@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=1000px"/>
+        <title>PasteSafe</title>
+        <link rel=stylesheet href="index.css"/>
+    </head>
+    <body>
+        <div class="plate">
+            <section class="info">
+                <h1>
+                    PasteSafe
+                    <br/><small>Web Cryptography in Realtime</small>
+                </h1>
+                <p>Open source tool for encrypting and decrypting text on the fly. </p>
+                <p>AES-256 GCM cipher.</p>
+                <p>Hexadecimal output. First 32 hex digits represent the randomly generated IV.</p>
+                <p>Works in Chrome and Firefox. Currently broken in Internet Explorer (sorry).</p>
+            </section>
+            <section class="app">
+
+                <div paste-safe>
+                    <div class="text-input-box">
+                        <textarea class="text-input" placeholder="Input"></textarea>
+                    </div>
+                    <div class="controls">
+                        <div class="cell">
+                            <input class="password" type="text" placeholder="Password" maxlength="32"/>
+                        </div>
+                        <label class="radio cell" for="encrypt" data-checked>
+                            <input id="encrypt" class="encrypt" type="radio" name="cryption_mode" value="encrypt" checked/>
+                            Encrypt
+                        </label>
+                        <label class="radio cell" for="decrypt">
+                            <input id="decrypt" class="decrypt" type="radio" name="cryption_mode" value="decrypt"/>
+                            Decrypt
+                        </label>
+                    </div>
+                    <div class="text-output-box">
+                        <textarea class="text-output" placeholder="Output"></textarea>
+                        <ul class="output-blocker" data-mode="off">
+                            <li>&lt; output box &gt;</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
