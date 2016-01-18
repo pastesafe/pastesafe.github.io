@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%; }
+
+.plate {
+  display: table;
+  width: 100%;
+  height: 100%; }
+
+section {
+  display: table-cell;
+  height: 100%;
+  position: relative; }
+
+section.info {
+  width: 32%;
+  padding: 2.5%;
+  font-family: sans-serif;
+  background: white;
+  color: #888; }
+  section.info > * + * {
+    margin-top: 1em; }
+  section.info h1, section.info h2 {
+    text-align: center; }
+    section.info h1 small, section.info h2 small {
+      opacity: 0.5;
+      font-size: 0.75em;
+      font-weight: normal; }
+  section.info h2 {
+    font-size: 1.25em;
+    opacity: 0.75; }
+  section.info ul {
+    padding-left: 1em; }
+  section.info li + li {
+    margin-top: 0.5em; }
+
+[paste-safe] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  margin: auto;
+  background: #A3BFBA;
+  color: #4e716a;
+  outline: 2px solid transparent; }
+  [paste-safe], [paste-safe] * {
+    box-sizing: border-box; }
+  [paste-safe][data-cryption-mode=decrypt] {
+    background: #A3A8BF; }
+  [paste-safe] *:focus {
+    outline: 3px solid rgba(255, 84, 0, 0.5);
+    transition: outline 200ms ease; }
+  [paste-safe] ::selection {
+    background: rgba(255, 153, 0, 0.6); }
+  [paste-safe] .text-input-box, [paste-safe] .text-output-box {
+    position: relative;
+    height: 45%;
+    width: 100%; }
+  [paste-safe] textarea {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    border: none;
+    font-family: sans-serif;
+    color: inherit; }
+  [paste-safe] .output-blocker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    list-style: none;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    color: #CCC; }
+    [paste-safe] .output-blocker li {
+      font-family: sans-serif;
+      font-size: 1.4em; }
+    [paste-safe] .output-blocker[data-mode=error] {
+      background: rgba(255, 49, 0, 0.8);
+      color: white; }
+    [paste-safe] .output-blocker[data-mode=off] {
+      display: none; }
+  [paste-safe] div.controls {
+    display: table;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    color: white;
+    border: 1px solid white; }
+    [paste-safe] div.controls .cell {
+      vertical-align: middle;
+      display: table-cell; }
+      [paste-safe] div.controls .cell + .cell {
+        border-left: 1px solid white; }
+    [paste-safe] div.controls .cell.radio {
+      cursor: pointer;
+      font-weight: bold; }
+      [paste-safe] div.controls .cell.radio:hover {
+        background: rgba(255, 255, 255, 0.1); }
+      [paste-safe] div.controls .cell.radio:active {
+        background: rgba(255, 255, 255, 0.2); }
+      [paste-safe] div.controls .cell.radio[data-checked] {
+        background: rgba(0, 133, 214, 0.47);
+        text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15); }
+    [paste-safe] div.controls input.password {
+      border: none;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      font-family: Consolas, monospace;
+      color: #FF5400;
+      font-weight: bold;
+      font-size: 1.2em; }
+      [paste-safe] div.controls input.password::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, 0.2); }
+      [paste-safe] div.controls input.password::-moz-placeholder {
+        color: rgba(0, 0, 0, 0.2); }
+      [paste-safe] div.controls input.password:-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.2); }
+    [paste-safe] div.controls input[type="radio"] {
+      font-size: 1.5em; }
+    [paste-safe] div.controls label {
+      font-family: sans-serif; }
+
+/*# sourceMappingURL=index.css.map */
