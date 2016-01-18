@@ -74,6 +74,11 @@ var aesBuddy = (function AesBuddy() { "use strict";
 //// PasteSafe Web App
 ////
 (function PasteSafeWebApp(aesBuddy) { "use strict";
+
+    // Forcing HTTPS in production.
+    var production = /github\.io/i.test(window.location.href) || /pastesafe\.com/i.test(window.location.href);
+    if (production && !/https/i.test(window.location.protocol))
+        window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
     
     var root = document.querySelector('[paste-safe]');
     var textInput = root.querySelector('textarea.text-input');
