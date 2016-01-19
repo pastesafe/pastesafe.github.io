@@ -2,7 +2,6 @@
   "name": "pastesafe",
   "version": "0.0.0",
   "description": "Web crypto app",
-  "main": "build/PasteSafe.js",
   "scripts": {
     "sass": "node-sass --source-map true index.scss index.css",
     "sass-watch": "node-sass --source-map true --watch index.scss index.css"
