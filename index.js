@@ -2,6 +2,7 @@
 //// PasteSafe web app.
 ////
 (function PasteSafeWebApp(aesBuddy) { "use strict";
+    
     // Forcing HTTPS in production.
     var production = /github\.io/i.test(window.location.href) || /pastesafe\.com/i.test(window.location.href);
     if (production && !/https/i.test(window.location.protocol))
@@ -103,4 +104,18 @@
 
     // Initialize.
     instantAction();
+
+    // Flyout toggle.
+    var flyoutActive = false;
+    var plate = document.querySelector('.plate');
+    function toggleHandler(event) {
+        flyoutActive = !flyoutActive;
+        plate.setAttribute("data-flyout", flyoutActive ? "active" : "hidden");
+        if (event) event.preventDefault();
+        return false;
+    }
+    var toggleButtons = document.querySelectorAll('.flyout-toggle');
+    for (var i=0; i<toggleButtons.length; i++)
+        toggleButtons[i].onclick = toggleHandler;
+
 })(aesBuddy);
