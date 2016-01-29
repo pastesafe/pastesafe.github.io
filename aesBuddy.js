@@ -8,7 +8,7 @@ var aesBuddy = (function AesBuddy() { "use strict";
         return Array.from(new Uint8Array(buffer))
             .map(byte => ('00' + byte.toString(16).toUpperCase()).slice(-2))
             .join('');
-    };
+    }
 
     function unhexify(hex) {
         var bufferLength = hex.length / 2;
@@ -20,12 +20,12 @@ var aesBuddy = (function AesBuddy() { "use strict";
             view[bufferIndex] = parseInt(hexByte, 16);
         }
         return buffer;
-    };
+    }
 
     function prepareKey(password) {
         return crypto.subtle.digest('sha-256', new TextEncoder('utf-8').encode(password))
             .then(hash => crypto.subtle.importKey('raw', hash, 'aes-gcm', false, ['encrypt', 'decrypt']));
-    };
+    }
 
     function encrypt(password, text) {
         try {
@@ -47,7 +47,7 @@ var aesBuddy = (function AesBuddy() { "use strict";
                 return buffer;
             })
             .then(hexify);
-    };
+    }
 
     function decrypt(password, hex) {
         try {
@@ -61,7 +61,7 @@ var aesBuddy = (function AesBuddy() { "use strict";
         return prepareKey(password)
             .then(key => crypto.subtle.decrypt({name: 'aes-gcm', iv: iv}, key, ciphertext))
             .then(cleartext => new TextDecoder('utf-8').decode(cleartext));
-    };
+    }
 
     return {
         encrypt:encrypt,

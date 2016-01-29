@@ -84,6 +84,7 @@ $flyout-time: 400ms;
     }
 
     .output-blocker {
+        z-index: 1;
         position: absolute;
         top:0; right:0; bottom:0; left:0;
         display: block;
@@ -136,6 +137,14 @@ $flyout-time: 400ms;
             font-size: 1.5em;
         }
     }
+
+    .linkbox {
+        position: absolute;
+        bottom: 0;
+        width: 100%; height: 1.5em;
+        padding: 0.25em;
+        overflow: hidden;
+    }
 }
 
 ///////////////// Layout Above / Appearance Below ////////////////////////////
@@ -152,7 +161,7 @@ html {
 
 .flyout-toggle {
     transition: opacity 400ms ease;
-    opacity: 0.69;
+    opacity: 0.4;
     &:hover { opacity: 0.9; text-decoration: underline; }
     &:active { opacity: 1; color: $color-highlight; }
     [data-flyout=active] .app & {
@@ -207,5 +216,15 @@ html {
 
     .controls label {
         font-family: sans-serif;
+    }
+
+    .linkbox a {
+        background: rgba(255,255,255, 0.95);
+        text-decoration: none;
+
+        color: rgba(0,10,255, 0.4);
+        transition: color 400ms ease;
+        &:hover { color: rgba(0,10,255, 0.8); }
+        &:active { color: $color-highlight; }
     }
 }
