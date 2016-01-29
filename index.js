@@ -128,7 +128,6 @@ for (var i=0; i<toggleButtons.length; i++)
 
 // Initializing with decryption data from URL.
 function interpretHash() {
-    console.log("hashchange");
     var hash = /(?:^|#)([0-9a-fA-f]{10,})/i.exec(window.location.hash);
     if (hash) {
         var hex = hash[1];
