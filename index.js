@@ -114,11 +114,13 @@ encryptButton.addEventListener('change', instantAction);
 decryptButton.addEventListener('change', instantAction);
 
 // Flyout toggle.
-var flyoutActive = false;
 var plate = document.querySelector('.plate');
+plate.setAttribute("data-flyout", window.localStorage.getItem("flyout") || "active");
 function toggleHandler(event) {
-    flyoutActive = !flyoutActive;
-    plate.setAttribute("data-flyout", flyoutActive ? "active" : "hidden");
+    var currentStatus = plate.getAttribute("data-flyout");
+    var newStatus = currentStatus==="active" ?"hidden" :"active";
+    plate.setAttribute("data-flyout", newStatus);
+    window.localStorage.setItem("flyout", newStatus);
     if (event) event.preventDefault();
     return false;
 }
