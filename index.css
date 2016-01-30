@@ -111,7 +111,7 @@ html, body {
       vertical-align: middle;
       display: table-cell; }
       [paste-safe] .controls .cell + .cell {
-        border-left: 1px solid white; }
+        border-left: 2px solid rgba(0, 133, 214, 0.47); }
     [paste-safe] .controls .cell.radio {
       cursor: pointer;
       font-weight: bold; }

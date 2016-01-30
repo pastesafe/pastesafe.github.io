@@ -109,7 +109,7 @@ $flyout-time: 400ms;
         .cell {
             vertical-align: middle;
             display: table-cell;
-            & + .cell { border-left: 1px solid white; }
+            & + .cell { border-left: 2px solid rgba(0, 133, 214, 0.47); }
         }
 
         .cell.radio {
