@@ -190,10 +190,10 @@ html {
   [paste-safe] .linkbox a {
     background: rgba(255, 255, 255, 0.95);
     text-decoration: none;
-    color: rgba(0, 10, 255, 0.4);
+    color: rgba(0, 10, 255, 0.6);
     transition: color 400ms ease; }
     [paste-safe] .linkbox a:hover {
-      color: rgba(0, 10, 255, 0.8); }
+      color: #000aff; }
     [paste-safe] .linkbox a:active {
       color: #FF5400; }
 

@@ -222,9 +222,9 @@ html {
         background: rgba(255,255,255, 0.95);
         text-decoration: none;
 
-        color: rgba(0,10,255, 0.4);
+        color: rgba(0,10,255, 0.6);
         transition: color 400ms ease;
-        &:hover { color: rgba(0,10,255, 0.8); }
+        &:hover { color: rgba(0,10,255, 1); }
         &:active { color: $color-highlight; }
     }
 }
