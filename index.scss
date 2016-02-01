@@ -41,6 +41,7 @@ $flyout-time: 400ms;
     top:0; right:0;
     cursor: pointer;
     padding: 0.5em;
+    margin: auto;
 
     .app & {
         right: auto;
@@ -112,9 +113,6 @@ $flyout-time: 400ms;
     }
     .text-output {
         height: 40%;
-        // word-wrap: break-word;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
     }
 
     .linkbox {

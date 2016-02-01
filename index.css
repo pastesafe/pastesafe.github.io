@@ -45,7 +45,8 @@ html, body {
   top: 0;
   right: 0;
   cursor: pointer;
-  padding: 0.5em; }
+  padding: 0.5em;
+  margin: auto; }
   .app .flyout-toggle-button {
     right: auto;
     left: 0;
