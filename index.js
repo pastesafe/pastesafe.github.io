@@ -152,6 +152,9 @@ var toggleButtons = document.querySelectorAll('.flyout-toggle-button');
 for (var i=0; i<toggleButtons.length; i++)
     toggleButtons[i].onclick = toggleHandler;
 
+// Initial instant action.
+instantAction();
+
 // Initializing with decryption data from URL.
 function interpretHash() {
     var hash = /(?:^|#)([0-9a-fA-f]{10,})/i.exec(window.location.hash);
@@ -167,6 +170,3 @@ function interpretHash() {
 }
 window.addEventListener('hashchange', interpretHash);
 interpretHash();
-
-// Initial instant action.
-instantAction();
