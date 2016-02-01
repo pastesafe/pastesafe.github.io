@@ -7,9 +7,8 @@
         <link rel=stylesheet href="index.css"/>
     </head>
     <body>
-        <div class="plate" data-flyout="hidden">
-            <section class="info">
-                <a class="flyout-toggle">Close</a>
+        <div class="plate" data-flyout-state="active">
+            <section class="flyout">
                 <h1>
                     PasteSafe
                     <br/><small>Instant Web Cryptography</small>
@@ -17,43 +16,42 @@
                 <p>Tool for instantly encrypting and decrypting text, on the fly, as you type.</p>
                 <p><strong>Easily share sensitive information via email!</strong></p>
                 <ul>
-                    <li>Encrypt some text with a password.</li>
-                    <li>Copy the link at the bottom, and email it to your friend.</li>
-                    <li>Give your friend a phone call, and verbally tell them the password. <em>Don't just send the password via email.</em></li>
-                    <li>They just have to click the link and enter the password to see the message.</li>
+                    <li>Press 'Encrypt', enter a password, and enter your secret message.</li>
+                    <li>Email the link at the bottom to your friend.</li>
+                    <li>Tell the password to your friend over the phone. <em>Don't just send the password via email.</em></li>
+                    <li>To see your message, your friend just clicks your link, and enters the password.</li>
                 </ul>
                 <p><strong>Open source.</strong><br/> <a href="https://github.com/ChaseMoskal/PasteSafe">Github project</a>, <a href="https://github.com/ChaseMoskal/PasteSafe/blob/gh-pages/LICENSE">MIT License</a>.</p>
                 <p><strong>AES-256 GCM.</strong><br/> Hexadecimal output. <br/>Built on the <a href="https://www.w3.org/TR/WebCryptoAPI/">Web Cryptography API</a></p>
                 <p><strong>Work in progress!</strong><br/> I'm calling it v0.0.0.</p>
                 <p><strong>Built for Chrome.</strong><br/> Works in Firefox (sort of). Internet Explorer is not supported (for lack of TextEncoder, among other things).</p>
+                <a class="flyout-toggle-button">Close</a>
             </section>
             <section class="app">
-                <a class="flyout-toggle">Info</a>
+                <a class="flyout-toggle-button">Info</a>
                 <div paste-safe>
-                    <div class="text-input-box">
-                        <textarea class="text-input" placeholder="Input"></textarea>
-                    </div>
                     <div class="controls">
-                        <div class="cell">
-                            <input class="password" type="password" placeholder="Password" maxlength="32"/>
-                        </div>
-                        <label class="radio cell" for="encrypt" data-checked>
+                        <label class="cell mode-button" for="encrypt" data-checked>
                             <input id="encrypt" class="encrypt" type="radio" name="cryption_mode" value="encrypt" checked/>
                             Encrypt
                         </label>
-                        <label class="radio cell" for="decrypt">
+                        <label class="cell mode-button" for="decrypt">
                             <input id="decrypt" class="decrypt" type="radio" name="cryption_mode" value="decrypt"/>
                             Decrypt
                         </label>
-                    </div>
-                    <div class="text-output-box">
-                        <textarea class="text-output" placeholder="Output"></textarea>
-                        <ul class="output-blocker" data-mode="off">
-                            <li>&lt; output box &gt;</li>
-                        </ul>
-                        <div class="linkbox">
-                            <a class="bottom-link" title="Shareable link" href="#"></a>
+                        <div class="cell">
+                            <div class="passbox">
+                                <input class="password" type="password" placeholder="Password" maxlength="32"/>
+                                <div class="tooltip">
+                                    <p>Enter a password here to decrypt the message!</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <textarea class="text-input"></textarea>
+                    <textarea class="text-output" readonly></textarea>
+                    <div class="linkbox">
+                        <a class="bottom-link" title="Shareable link" href="#"></a>
                     </div>
                 </div>
             </section>

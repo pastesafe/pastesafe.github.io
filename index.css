@@ -1,6 +1,7 @@
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  box-sizing: border-box; }
 
 html, body {
   height: 100%;
@@ -11,8 +12,7 @@ html, body {
   width: 100%;
   height: 100%; }
 
-.info {
-  box-sizing: border-box;
+.flyout {
   position: absolute;
   width: 32%;
   height: 100%;
@@ -22,31 +22,31 @@ html, body {
   padding: 2em;
   overflow: auto;
   transition: left 400ms ease; }
-  [data-flyout=hidden] .info {
+  [data-flyout-state=hidden] .flyout {
     left: -32%; }
-  .info > * + * {
+  .flyout > * + * {
     margin-top: 1em; }
-  .info h1, .info h2 {
+  .flyout h1, .flyout h2 {
     text-align: center; }
-    .info h1 small, .info h2 small {
+    .flyout h1 small, .flyout h2 small {
       opacity: 0.5;
       font-size: 0.75em;
       font-weight: normal; }
-  .info h2 {
+  .flyout h2 {
     font-size: 1.25em;
     opacity: 0.75; }
-  .info ul {
+  .flyout ul {
     padding-left: 1em; }
-  .info li + li {
+  .flyout li + li {
     margin-top: 0.5em; }
 
-.flyout-toggle {
+.flyout-toggle-button {
   position: absolute;
   top: 0;
   right: 0;
   cursor: pointer;
   padding: 0.5em; }
-  .app .flyout-toggle {
+  .app .flyout-toggle-button {
     right: auto;
     left: 0;
     z-index: 1; }
@@ -59,7 +59,7 @@ html, body {
   right: 0;
   bottom: 0;
   transition: width 400ms ease; }
-  [data-flyout=hidden] .app {
+  [data-flyout-state=hidden] .app {
     width: 100%; }
 
 [paste-safe] {
@@ -72,129 +72,136 @@ html, body {
   height: 100%;
   padding: 10%;
   margin: auto; }
-  [paste-safe], [paste-safe] * {
-    box-sizing: border-box; }
-  [paste-safe] .text-input-box, [paste-safe] .text-output-box {
-    position: relative;
-    height: 45%;
-    width: 100%; }
   [paste-safe] textarea {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    border: none; }
-  [paste-safe] .output-blocker {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: block;
-    list-style: none;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    padding: 10%;
-    text-align: center; }
-    [paste-safe] .output-blocker[data-mode=off] {
-      display: none; }
+    resize: none; }
   [paste-safe] .controls {
     display: table;
     width: 100%;
     height: 10%;
-    text-align: center;
-    color: white;
-    border: 2px solid rgba(0, 133, 214, 0.47); }
+    text-align: center; }
     [paste-safe] .controls .cell {
       vertical-align: middle;
       display: table-cell; }
-      [paste-safe] .controls .cell + .cell {
-        border-left: 2px solid rgba(0, 133, 214, 0.47); }
-    [paste-safe] .controls .cell.radio {
+    [paste-safe] .controls .cell.mode-button {
       cursor: pointer;
       font-weight: bold; }
-      [paste-safe] .controls .cell.radio:hover {
-        background: rgba(255, 255, 255, 0.1); }
-      [paste-safe] .controls .cell.radio:active {
-        background: rgba(255, 255, 255, 0.2); }
-      [paste-safe] .controls .cell.radio[data-checked] {
-        background: rgba(0, 133, 214, 0.47);
-        text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15); }
-    [paste-safe] .controls input.password {
+    [paste-safe] .controls .passbox {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%; }
+      [paste-safe] .controls .passbox .tooltip {
+        z-index: 1;
+        position: absolute;
+        bottom: 80%;
+        right: 10%;
+        width: 80%;
+        padding: 0.5em; }
+    [paste-safe] .controls .password {
       border: none;
       width: 100%;
       height: 100%;
       text-align: center;
       font-size: 1.2em; }
-    [paste-safe] .controls input[type="radio"] {
+    [paste-safe] .controls .mode-button {
       font-size: 1.5em; }
-  [paste-safe] .linkbox {
-    position: absolute;
-    bottom: 0;
+  [paste-safe] .text-input, [paste-safe] .text-output {
+    display: block;
+    position: relative;
     width: 100%;
-    height: 1.5em;
-    padding: 0.25em;
-    overflow: hidden; }
+    height: 45%;
+    padding: 2%;
+    border: none; }
+  [paste-safe] .text-output {
+    height: 40%; }
+  [paste-safe] .linkbox {
+    display: block;
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    padding: 1em; }
+    [paste-safe] .linkbox a {
+      padding: 0.5em;
+      border-radius: 4px;
+      overflow: hidden; }
+  [paste-safe] .tooltip {
+    display: none; }
+    [paste-safe] .tooltip[data-show] {
+      display: block; }
 
 html {
   font-family: sans-serif; }
 
-.info {
-  background: white;
-  color: #888; }
+*::selection {
+  background: rgba(255, 85, 0, 0.5); }
 
-.flyout-toggle {
+.flyout {
+  background: #EEE;
+  color: rgba(34, 34, 34, 0.8); }
+
+.flyout-toggle-button {
   transition: opacity 400ms ease;
   opacity: 0.4; }
-  .flyout-toggle:hover {
+  .flyout-toggle-button:hover {
     opacity: 0.9;
     text-decoration: underline; }
-  .flyout-toggle:active {
+  .flyout-toggle-button:active {
     opacity: 1;
-    color: #FF5400; }
-  [data-flyout=active] .app .flyout-toggle {
+    color: #F50; }
+  .app .flyout-toggle-button {
+    color: #EEE; }
+  [data-flyout-state=active] .app .flyout-toggle-button {
     opacity: 0; }
 
 [paste-safe] {
-  background: #A3BFBA;
-  color: #4e716a;
-  outline: 2px solid transparent; }
-  [paste-safe][data-cryption-mode=decrypt] {
-    background: #A3A8BF; }
-  [paste-safe] *:focus {
-    outline: 3px solid rgba(255, 84, 0, 0.5);
+  background: #222; }
+  [paste-safe] .controls *, [paste-safe] .text-input, [paste-safe] .text-output {
+    outline: 3px solid transparent;
     transition: outline 200ms ease; }
-  [paste-safe]::selection {
-    background: rgba(255, 153, 0, 0.6); }
-  [paste-safe] textarea {
-    color: inherit; }
+  [paste-safe] .controls *:focus, [paste-safe] .text-input:focus, [paste-safe] .text-output:focus {
+    outline: 3px solid #F50; }
+  [paste-safe] .controls {
+    background: #EEE; }
+    [paste-safe] .controls .mode-button {
+      background: #bbbbbb;
+      color: #FFF;
+      text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3); }
+      [paste-safe] .controls .mode-button[data-checked] {
+        background: #2B6; }
+    [paste-safe] .controls .password {
+      background: transparent;
+      font-family: Consolas, monospace;
+      color: #F50;
+      font-weight: bold; }
+  [paste-safe] .text-input {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; }
+  [paste-safe] .text-output {
+    background: transparent;
+    color: #919191; }
   [paste-safe] .output-blocker {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(34, 34, 34, 0.2);
     color: #CCC; }
     [paste-safe] .output-blocker li {
       font-size: 1.4em; }
     [paste-safe] .output-blocker[data-mode=error] {
-      background: rgba(255, 49, 0, 0.8);
-      color: white; }
-  [paste-safe] input.password {
-    background: rgba(255, 255, 255, 0.8);
-    font-family: Consolas, monospace;
-    color: #FF5400;
-    font-weight: bold; }
-    [paste-safe] input.password::-webkit-input-placeholder, [paste-safe] input.password::-moz-placeholder, [paste-safe] input.password:-ms-input-placeholder {
-      color: rgba(0, 0, 0, 0.2); }
-  [paste-safe] .controls label {
-    font-family: sans-serif; }
+      color: #F50; }
   [paste-safe] .linkbox a {
-    background: rgba(255, 255, 255, 0.95);
     text-decoration: none;
-    color: rgba(0, 10, 255, 0.6);
-    transition: color 400ms ease; }
+    background: transparent;
+    color: #2C89FF;
+    transition: color 200ms ease; }
+    [paste-safe] .linkbox a[data-show] {
+      background: rgba(255, 255, 255, 0.1); }
     [paste-safe] .linkbox a:hover {
-      color: #000aff; }
+      color: #5fa6ff; }
     [paste-safe] .linkbox a:active {
-      color: #FF5400; }
+      color: #F50; }
+  [paste-safe] .tooltip {
+    background: rgba(255, 136, 0, 0.95);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
 
 /*# sourceMappingURL=index.css.map */
