@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "target": "es5",
+        "sourceMap": true,
+        "outFile": "build/script.js"
+    },
+    "files": ["source/script"]
+}

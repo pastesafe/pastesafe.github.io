@@ -4,10 +4,11 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=1000px"/>
         <title>PasteSafe</title>
-        <link rel=stylesheet href="index.css"/>
+        <link rel=stylesheet href="build/style.css"/>
+        <script async src="build/script.js"></script>
     </head>
     <body>
-        <div class="plate" data-flyout-state="hidden">
+        <div class="plate" data-flyout-state="active">
             <section class="flyout">
                 <h1>
                     PasteSafe
@@ -41,7 +42,7 @@
                         </label>
                         <div class="cell">
                             <div class="passbox">
-                                <input class="password" type="password" placeholder="Password" maxlength="32"/>
+                                <input class="password" type="password" placeholder="Password" autocomplete="off" maxlength="32"/>
                                 <div class="tooltip">
                                     <p>Enter the password here to decrypt the message!</p>
                                 </div>
@@ -56,7 +57,5 @@
                 </div>
             </section>
         </div>
-        <script src="aesBuddy.js"></script>
-        <script src="index.js"></script>
     </body>
 </html>

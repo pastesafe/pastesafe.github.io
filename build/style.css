@@ -117,10 +117,9 @@ html, body {
     height: 40%; }
   [paste-safe] .linkbox {
     display: block;
+    font-size: 1.5em;
     width: 100%;
-    height: 5%;
-    text-align: center;
-    padding: 1em; }
+    text-align: center; }
     [paste-safe] .linkbox a {
       padding: 0.5em;
       border-radius: 4px;
@@ -156,11 +155,13 @@ html {
 
 [paste-safe] {
   background: #222; }
-  [paste-safe] .controls *, [paste-safe] .text-input, [paste-safe] .text-output {
+  [paste-safe] .controls *, [paste-safe] .text-input {
     outline: 3px solid transparent;
     transition: outline 200ms ease; }
-  [paste-safe] .controls *:focus, [paste-safe] .text-input:focus, [paste-safe] .text-output:focus {
+  [paste-safe] .controls *:focus, [paste-safe] .text-input:focus {
     outline: 3px solid #F50; }
+  [paste-safe] .text-output {
+    outline: none; }
   [paste-safe] .controls {
     background: #EEE; }
     [paste-safe] .controls .mode-button {
@@ -179,7 +180,7 @@ html {
     border-bottom-right-radius: 4px; }
   [paste-safe] .text-output {
     background: transparent;
-    color: #919191; }
+    color: #c8c8c8; }
   [paste-safe] .output-blocker {
     background: rgba(34, 34, 34, 0.2);
     color: #CCC; }
@@ -205,4 +206,4 @@ html {
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
 
-/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -1,29 +1,31 @@
+/// <reference path="./aesBuddy.ts"/>
+
 ////
 //// PasteSafe web app.
 ////
 
-var officialBaseLink = "https://chasemoskal.github.io/PasteSafe/";
+var officialBaseLink = "https://pastesafe.github.io/";
 
 // Forcing HTTPS in production.
-var production = /github\.io/i.test(window.location.href) || /pastesafe\.com/i.test(window.location.href);
+var production = /github\.io/i.test(window.location.host) || /pastesafe\.com/i.test(window.location.host);
 if (production && !/https/i.test(window.location.protocol))
     window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
 // Obtaining references to PasteSafe DOM elements.
-var root = document.querySelector('[paste-safe]');
-var textInput = root.querySelector('.text-input');
-var textOutput = root.querySelector('.text-output');
-var passwordInput = root.querySelector('.password');
-var passwordTooltip = root.querySelector('.passbox .tooltip');
-var encryptButton = root.querySelector('.encrypt');
-var decryptButton = root.querySelector('.decrypt');
-var outputBlocker = root.querySelector('.output-blocker');
-var bottomLink = root.querySelector('.bottom-link');
+var root            = <HTMLElement>         document.querySelector('[paste-safe]');
+var textInput       = <HTMLTextAreaElement> root.querySelector('.text-input');
+var textOutput      = <HTMLTextAreaElement> root.querySelector('.text-output');
+var passwordInput   = <HTMLInputElement>    root.querySelector('.password');
+var passwordTooltip = <HTMLDivElement>      root.querySelector('.passbox .tooltip');
+var encryptButton   = <HTMLInputElement>    root.querySelector('.encrypt');
+var decryptButton   = <HTMLInputElement>    root.querySelector('.decrypt');
+var outputBlocker   = <HTMLTextAreaElement> root.querySelector('.output-blocker');
+var bottomLink      = <HTMLAnchorElement>   root.querySelector('.bottom-link');
 
 // Start focused on password box.
 passwordInput.focus();
 
-var setBottomLink = (hex) => {
+var setBottomLink = (hex?: string) => {
     if (hex) {
         bottomLink.href = "#" + hex;
         bottomLink.textContent = officialBaseLink + "#" + hex.substring(0, 8) + "...";
@@ -37,7 +39,10 @@ var setBottomLink = (hex) => {
 };
 setBottomLink();
 
-var getCryptionMode = () => root.querySelector('input[name="cryption_mode"]:checked').value;
+var getCryptionMode = () => {
+    let checkedRadioButton = <HTMLInputElement> root.querySelector('input[name=cryption_mode]:checked');
+    return checkedRadioButton.value;
+};
 
 // Handling the switch between 'encrypt' and 'decrypt' cryption mode.
 function refreshCryptionMode() {
@@ -148,7 +153,7 @@ function toggleHandler(event) {
     if (event) event.preventDefault();
     return false;
 }
-var toggleButtons = document.querySelectorAll('.flyout-toggle-button');
+var toggleButtons = <HTMLElement[]> [].slice.call( document.querySelectorAll('.flyout-toggle-button') );
 for (var i=0; i<toggleButtons.length; i++)
     toggleButtons[i].onclick = toggleHandler;
 
