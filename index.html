@@ -5,7 +5,29 @@
         <meta name="viewport" content="width=1000px"/>
         <title>PasteSafe</title>
         <link rel=stylesheet href="build/style.css"/>
-        <script async src="build/script.js"></script>
+        <script>
+
+            function loadScript(link, onload) {
+                var script = document.createElement("script");
+                if (onload) script.onload = onload;
+                script.src = link;
+                document.head.appendChild(script);
+                return script;
+            }
+            
+            // Debug mode -- use requirejs.
+            if (/^\??debug/i.test(location.search)) {
+                loadScript("library/requirejs/require.js", function() {
+                    require(["build/script"]);
+                });
+            }
+            
+            // Production -- use webpack bundle.
+            else {
+                loadScript("build/script.bundle.js");
+            }
+
+        </script>
     </head>
     <body>
         <div class="plate" data-flyout-state="active">
@@ -24,7 +46,7 @@
                 </ul>
                 <p><strong>Open source.</strong><br/> <a href="https://github.com/ChaseMoskal/PasteSafe">Github project</a>, <a href="https://github.com/ChaseMoskal/PasteSafe/blob/gh-pages/LICENSE">MIT License</a>.</p>
                 <p><strong>AES-256 GCM.</strong><br/> Hexadecimal output. <br/>Built on the <a href="https://www.w3.org/TR/WebCryptoAPI/">Web Cryptography API</a></p>
-                <p><strong>Work in progress!</strong><br/> v0.2.0.</p>
+                <p><strong>Work in progress!</strong><br/> v0.2.1.</p>
                 <p><strong>Built for Chrome.</strong><br/> Works in Firefox (sort of). Internet Explorer is not supported (for lack of TextEncoder, among other things).</p>
                 <a class="flyout-toggle-button">Close</a>
             </section>

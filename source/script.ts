@@ -1,8 +1,8 @@
-/// <reference path="./aesBuddy.ts"/>
-
 ////
 //// PasteSafe web app.
 ////
+
+import * as aesBuddy from "./aesBuddy";
 
 var officialBaseLink = "https://pastesafe.github.io/";
 
@@ -75,15 +75,15 @@ function setCryptionMode(mode) {
 //  - error: angry blocker that indicates something went wrong.
 function setOutputBlocker(options) {
     return false;
-    var mode = options.mode || "off";
-    var list = options.list || [];
-    outputBlocker.setAttribute("data-mode", mode);
-    outputBlocker.innerHTML = "";
-    list.forEach(item => {
-        var li = document.createElement('li');
-        li.textContent = item;
-        outputBlocker.appendChild(li);
-    });
+    // var mode = options.mode || "off";
+    // var list = options.list || [];
+    // outputBlocker.setAttribute("data-mode", mode);
+    // outputBlocker.innerHTML = "";
+    // list.forEach(item => {
+    //     var li = document.createElement('li');
+    //     li.textContent = item;
+    //     outputBlocker.appendChild(li);
+    // });
 }
 
 // As-you-type instant (en|de)cryption.

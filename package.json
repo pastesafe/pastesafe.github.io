@@ -1,12 +1,13 @@
 {
   "name": "pastesafe",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Web crypto app",
   "scripts": {
-    "tsc": "tsc",
+    "setup": "npm i -g typescript & npm i -g webpack",
+    "compile": "tsc && webpack ./build/script.js build/script.bundle.js",
     "sass": "node-sass --source-map true source/style.scss build/style.css",
     "sass-watch": "node-sass --source-map true --watch source/style.scss build/style.css",
-    "build": "tsc & npm run sass"
+    "build": "npm run compile & npm run sass"
   },
   "author": "Chase Moskal",
   "license": "MIT",

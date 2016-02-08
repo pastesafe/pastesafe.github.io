@@ -16,13 +16,6 @@
             "taskName": "build",
             "problemMatcher": "$tsc",
             "isBuildCommand": true
-        },
-        {
-            "taskName": "tsc",
-            "problemMatcher": "$tsc"
-        },
-        {
-            "taskName": "sass"
         }
     ]
 }
