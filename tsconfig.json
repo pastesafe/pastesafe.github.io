@@ -3,7 +3,12 @@
         "module": "amd",
         "target": "es5",
         "sourceMap": true,
-        "rootDir": "source",
+        "rootDir": ".",
         "outDir": "build"
-    }
+    },
+    "exclude": [
+        "build",
+        "library",
+        "node_modules"
+    ]
 }

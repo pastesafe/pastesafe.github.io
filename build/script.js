@@ -1,7 +1,8 @@
 ////
 //// PasteSafe web app.
+//// TODO: Refactor all of this.
 ////
-define(["require", "exports", "./aesBuddy"], function (require, exports, aesBuddy) {
+define(["require", "exports", "./library/pastesafe/pastesafe"], function (require, exports, pastesafe) {
     "use strict";
     var officialBaseLink = "https://pastesafe.github.io/";
     // Forcing HTTPS in production.
@@ -59,23 +60,6 @@ define(["require", "exports", "./aesBuddy"], function (require, exports, aesBudd
         decryptButton.checked = (mode === 'decrypt') ? true : false;
         refreshCryptionMode();
     }
-    // Blocking the output textarea with a message.
-    // Modes:
-    //  - off: no output blocker.
-    //  - plain: subtle blocker with a simple message.
-    //  - error: angry blocker that indicates something went wrong.
-    function setOutputBlocker(options) {
-        return false;
-        // var mode = options.mode || "off";
-        // var list = options.list || [];
-        // outputBlocker.setAttribute("data-mode", mode);
-        // outputBlocker.innerHTML = "";
-        // list.forEach(item => {
-        //     var li = document.createElement('li');
-        //     li.textContent = item;
-        //     outputBlocker.appendChild(li);
-        // });
-    }
     // As-you-type instant (en|de)cryption.
     var instantActionInProgress = false;
     function instantAction() {
@@ -86,32 +70,28 @@ define(["require", "exports", "./aesBuddy"], function (require, exports, aesBudd
         var cryptionMode = getCryptionMode();
         if (!!textInput.value && !!passwordInput.value) {
             if (cryptionMode === 'encrypt') {
-                aesBuddy.encrypt(passwordInput.value, textInput.value)
+                pastesafe.encrypt(passwordInput.value, textInput.value)
                     .then(function (hex) {
                     textOutput.textContent = hex;
                     setBottomLink(hex);
                     return hex;
                 })
-                    .then(function (hex) { setOutputBlocker({ mode: "off", list: [] }); })
                     .catch(function (error) {
                     textOutput.textContent = "";
                     setBottomLink();
-                    setOutputBlocker({ mode: "error", list: ["encryption error"] });
                 })
                     .then(function () { instantActionInProgress = false; });
             }
             else {
-                aesBuddy.decrypt(passwordInput.value, textInput.value)
+                pastesafe.decrypt(passwordInput.value, textInput.value)
                     .then(function (text) {
                     textOutput.textContent = text;
                     setBottomLink();
                     return text;
                 })
-                    .then(function (text) { setOutputBlocker({ mode: "off", list: [] }); })
                     .catch(function (error) {
                     textOutput.textContent = "";
                     setBottomLink();
-                    setOutputBlocker({ mode: "error", list: ["invalid"] });
                 })
                     .then(function () { instantActionInProgress = false; });
             }
@@ -119,7 +99,6 @@ define(["require", "exports", "./aesBuddy"], function (require, exports, aesBudd
         else {
             textOutput.textContent = "";
             setBottomLink();
-            setOutputBlocker({ mode: "plain", list: ["enter some input text and a password above"] });
             instantActionInProgress = false;
         }
     }

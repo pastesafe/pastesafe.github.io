@@ -46,8 +46,9 @@
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;////
 	//// PasteSafe web app.
+	//// TODO: Refactor all of this.
 	////
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, aesBuddy) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, pastesafe) {
 	    "use strict";
 	    var officialBaseLink = "https://pastesafe.github.io/";
 	    // Forcing HTTPS in production.
@@ -105,23 +106,6 @@
 	        decryptButton.checked = (mode === 'decrypt') ? true : false;
 	        refreshCryptionMode();
 	    }
-	    // Blocking the output textarea with a message.
-	    // Modes:
-	    //  - off: no output blocker.
-	    //  - plain: subtle blocker with a simple message.
-	    //  - error: angry blocker that indicates something went wrong.
-	    function setOutputBlocker(options) {
-	        return false;
-	        // var mode = options.mode || "off";
-	        // var list = options.list || [];
-	        // outputBlocker.setAttribute("data-mode", mode);
-	        // outputBlocker.innerHTML = "";
-	        // list.forEach(item => {
-	        //     var li = document.createElement('li');
-	        //     li.textContent = item;
-	        //     outputBlocker.appendChild(li);
-	        // });
-	    }
 	    // As-you-type instant (en|de)cryption.
 	    var instantActionInProgress = false;
 	    function instantAction() {
@@ -132,32 +116,28 @@
 	        var cryptionMode = getCryptionMode();
 	        if (!!textInput.value && !!passwordInput.value) {
 	            if (cryptionMode === 'encrypt') {
-	                aesBuddy.encrypt(passwordInput.value, textInput.value)
+	                pastesafe.encrypt(passwordInput.value, textInput.value)
 	                    .then(function (hex) {
 	                    textOutput.textContent = hex;
 	                    setBottomLink(hex);
 	                    return hex;
 	                })
-	                    .then(function (hex) { setOutputBlocker({ mode: "off", list: [] }); })
 	                    .catch(function (error) {
 	                    textOutput.textContent = "";
 	                    setBottomLink();
-	                    setOutputBlocker({ mode: "error", list: ["encryption error"] });
 	                })
 	                    .then(function () { instantActionInProgress = false; });
 	            }
 	            else {
-	                aesBuddy.decrypt(passwordInput.value, textInput.value)
+	                pastesafe.decrypt(passwordInput.value, textInput.value)
 	                    .then(function (text) {
 	                    textOutput.textContent = text;
 	                    setBottomLink();
 	                    return text;
 	                })
-	                    .then(function (text) { setOutputBlocker({ mode: "off", list: [] }); })
 	                    .catch(function (error) {
 	                    textOutput.textContent = "";
 	                    setBottomLink();
-	                    setOutputBlocker({ mode: "error", list: ["invalid"] });
 	                })
 	                    .then(function () { instantActionInProgress = false; });
 	            }
@@ -165,7 +145,6 @@
 	        else {
 	            textOutput.textContent = "";
 	            setBottomLink();
-	            setOutputBlocker({ mode: "plain", list: ["enter some input text and a password above"] });
 	            instantActionInProgress = false;
 	        }
 	    }
@@ -213,31 +192,23 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/// <reference path="../typings/es6-shim/es6-shim.d.ts"/>
-	/// <reference path="../typings/text-encoding/text-encoding.d.ts"/>
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/// <reference path="typings/tsd.d.ts"/>
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
 	    "use strict";
+	    //
+	    // # pastesafe
+	    // *Simple functions for encrypting and decrypting text.*
+	    //
+	    // Check out the Web Crypto API on MDN:
+	    //   > https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API
+	    //
+	    // Crypto object
+	    //  > https://developer.mozilla.org/en-US/docs/Web/API/Crypto
 	    var crypto = window.crypto || window.msCrypto;
-	    function hexify(buffer) {
-	        return Array.from(new Uint8Array(buffer))
-	            .map(function (byte) { return ('00' + byte.toString(16).toUpperCase()).slice(-2); })
-	            .join('');
-	    }
-	    function unhexify(hex) {
-	        var bufferLength = hex.length / 2;
-	        var buffer = new ArrayBuffer(bufferLength);
-	        var view = new Uint8Array(buffer);
-	        for (var bufferIndex = 0; bufferIndex < bufferLength; bufferIndex++) {
-	            var hexIndex = bufferIndex * 2;
-	            var hexByte = hex[hexIndex] + hex[hexIndex + 1];
-	            view[bufferIndex] = parseInt(hexByte, 16);
-	        }
-	        return buffer;
-	    }
-	    function prepareKey(password) {
-	        return crypto.subtle.digest('sha-256', new TextEncoder('utf-8').encode(password))
-	            .then(function (hash) { return crypto.subtle.importKey('raw', hash, 'aes-gcm', false, ['encrypt', 'decrypt']); });
-	    }
+	    /**
+	     * Encrypt some text with a password.
+	     * You'll get the encrypted contents back as a big hex string.
+	     */
 	    function encrypt(password, text) {
 	        try {
 	            var iv = crypto.getRandomValues(new Uint8Array(16));
@@ -261,6 +232,10 @@
 	            .then(hexify);
 	    }
 	    exports.encrypt = encrypt;
+	    /**
+	     * Decrypt a hex string with a password.
+	     * Returns the clear text payload.
+	     */
 	    function decrypt(password, hex) {
 	        try {
 	            var binary = unhexify(hex);
@@ -276,8 +251,32 @@
 	            .then(function (text) { return new TextDecoder('utf-8').decode(new Uint8Array(text)); });
 	    }
 	    exports.decrypt = decrypt;
+	    // Convert binary to hex.
+	    function hexify(buffer) {
+	        return Array.from(new Uint8Array(buffer))
+	            .map(function (byte) { return ('00' + byte.toString(16).toUpperCase()).slice(-2); })
+	            .join('');
+	    }
+	    // Convert hex to binary.
+	    function unhexify(hex) {
+	        var bufferLength = hex.length / 2;
+	        var buffer = new ArrayBuffer(bufferLength);
+	        var view = new Uint8Array(buffer);
+	        for (var bufferIndex = 0; bufferIndex < bufferLength; bufferIndex++) {
+	            var hexIndex = bufferIndex * 2;
+	            var hexByte = hex[hexIndex] + hex[hexIndex + 1];
+	            view[bufferIndex] = parseInt(hexByte, 16);
+	        }
+	        return buffer;
+	    }
+	    // Convert a password string into a `CryptoKey`.
+	    //  > https://developer.mozilla.org/en-US/docs/Web/API/CryptoKey
+	    function prepareKey(password) {
+	        return crypto.subtle.digest('sha-256', new TextEncoder('utf-8').encode(password))
+	            .then(function (hash) { return crypto.subtle.importKey('raw', hash, 'aes-gcm', false, ['encrypt', 'decrypt']); });
+	    }
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	//# sourceMappingURL=aesBuddy.js.map
+	//# sourceMappingURL=pastesafe.js.map
 
 /***/ }
 /******/ ]);
