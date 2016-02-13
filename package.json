@@ -1,7 +1,7 @@
 {
   "name": "pastesafe",
-  "version": "0.3.0",
-  "description": "Web crypto app",
+  "private": true,
+  "description": "Instant web cryptography",
   "scripts": {
     "setup": "npm i -g typescript && npm i -g webpack",
     "compile": "tsc && webpack ./build/script.js build/script.bundle.js",
