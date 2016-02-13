@@ -1,4 +1,4 @@
-# PasteSafe
+# PasteSafe Web App
 _Instant Web Cryptography._
 
 - PasteSafe Web App: [**pastesafe.github.io**](https://pastesafe.github.io/)
