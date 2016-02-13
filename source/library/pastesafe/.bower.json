@@ -1,0 +1,34 @@
+{
+  "name": "pastesafe",
+  "description": "Simple functions for easy AES encryption within the browser.",
+  "main": "pastesafe.js",
+  "authors": [
+    "Chase Moskal <chasemoskal@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "crypto",
+    "cryptography",
+    "encrypt"
+  ],
+  "homepage": "https://github.com/PasteSafe/pastesafe",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "README.md",
+    "tsconfig.json",
+    "tsd.json"
+  ],
+  "version": "0.2.0",
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.0",
+    "commit": "0280512a32441d674dde27c74997e1899367a87c"
+  },
+  "_source": "git://github.com/PasteSafe/pastesafe.git",
+  "_target": "^0.2",
+  "_originalSource": "pastesafe"
+}

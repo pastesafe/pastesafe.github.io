@@ -81,7 +81,9 @@ function instantAction() {
 
     if (!!textInput.value && !!passwordInput.value) {
         if (cryptionMode === 'encrypt') {
-            pastesafe.encrypt(passwordInput.value, textInput.value)
+            let password = passwordInput.value;
+            let text = textInput.value;
+            pastesafe.encrypt({text, password})
                 .then(hex => {
                     textOutput.textContent = hex;
                     setBottomLink(hex);
@@ -94,7 +96,9 @@ function instantAction() {
                 .then(()=>{ instantActionInProgress = false; });
         }
         else {
-            pastesafe.decrypt(passwordInput.value, textInput.value)
+            let password = passwordInput.value;
+            let hex = textInput.value;
+            pastesafe.decrypt({hex, password})
                 .then(text => {
                     textOutput.textContent = text;
                     setBottomLink();

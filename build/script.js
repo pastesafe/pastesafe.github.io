@@ -70,7 +70,9 @@ define(["require", "exports", "./library/pastesafe/pastesafe"], function (requir
         var cryptionMode = getCryptionMode();
         if (!!textInput.value && !!passwordInput.value) {
             if (cryptionMode === 'encrypt') {
-                pastesafe.encrypt(passwordInput.value, textInput.value)
+                var password = passwordInput.value;
+                var text = textInput.value;
+                pastesafe.encrypt({ text: text, password: password })
                     .then(function (hex) {
                     textOutput.textContent = hex;
                     setBottomLink(hex);
@@ -83,7 +85,9 @@ define(["require", "exports", "./library/pastesafe/pastesafe"], function (requir
                     .then(function () { instantActionInProgress = false; });
             }
             else {
-                pastesafe.decrypt(passwordInput.value, textInput.value)
+                var password = passwordInput.value;
+                var hex = textInput.value;
+                pastesafe.decrypt({ hex: hex, password: password })
                     .then(function (text) {
                     textOutput.textContent = text;
                     setBottomLink();

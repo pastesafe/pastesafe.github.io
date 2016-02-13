@@ -1,6 +1,6 @@
 {
   "name": "pastesafe-app",
   "dependencies": {
-    "pastesafe": "^0.1.2"
+    "pastesafe": "^0.2"
   }
 }
