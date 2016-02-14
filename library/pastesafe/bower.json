@@ -17,6 +17,7 @@
     "**/.*",
     "README.md",
     "tsconfig.json",
-    "tsd.json"
+    "tsd.json",
+    "typings"
   ]
 }

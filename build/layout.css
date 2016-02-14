@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-size: 10px; }
+
+.baseplate {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.flyout {
+  position: absolute;
+  width: 32%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+  transition: left 400ms ease; }
+  [data-flyout-state=hidden] .flyout {
+    left: -32%; }
+  .flyout section {
+    padding: 0.5em 2em; }
+    .flyout section:first-child {
+      text-align: center; }
+      .flyout section:first-child p {
+        text-align: left; }
+    .flyout section > * + * {
+      margin-top: 0.5em; }
+  .flyout h1 small, .flyout h2 small {
+    opacity: 0.5;
+    font-size: 0.75em;
+    font-weight: normal; }
+  .flyout h2 {
+    font-size: 1.25em;
+    opacity: 0.75; }
+  .flyout ul {
+    padding-left: 1em; }
+  .flyout li + li {
+    margin-top: 0.5em; }
+  .flyout ul.inline {
+    list-style: none; }
+    .flyout ul.inline li {
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      border-radius: 3px;
+      border: 1px solid #BBB; }
+  .flyout .important-note {
+    margin: 1em auto;
+    padding: 1em 2em;
+    text-align: left; }
+    .flyout .important-note * + * {
+      margin-top: 0.5em; }
+    .flyout .important-note h2 {
+      opacity: 1;
+      font-size: 1.3em; }
+
+.flyout-toggle-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: auto; }
+  .app .flyout-toggle-button {
+    right: auto;
+    left: 0;
+    z-index: 1; }
+
+.app {
+  position: absolute;
+  width: 68%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: width 400ms ease; }
+  [data-flyout-state=hidden] .app {
+    width: 100%; }
+
+[paste-safe] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  margin: auto; }
+  [paste-safe] textarea {
+    resize: none; }
+  [paste-safe] .controls {
+    display: table;
+    width: 100%;
+    height: 10%;
+    text-align: center; }
+    [paste-safe] .controls .cell {
+      vertical-align: middle;
+      display: table-cell; }
+    [paste-safe] .controls .cell.mode-button {
+      cursor: pointer;
+      font-weight: bold; }
+    [paste-safe] .controls .passbox {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%; }
+      [paste-safe] .controls .passbox .tooltip {
+        z-index: 1;
+        position: absolute;
+        bottom: 80%;
+        right: 10%;
+        width: 80%;
+        padding: 0.5em; }
+    [paste-safe] .controls .key {
+      border: none;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 1.2em; }
+    [paste-safe] .controls .mode-button {
+      font-size: 1.5em; }
+  [paste-safe] .text-input, [paste-safe] .text-output {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 45%;
+    padding: 2%;
+    border: none; }
+  [paste-safe] .text-output {
+    height: 40%; }
+  [paste-safe] .linkbox {
+    display: inline-block;
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 2.2em;
+    text-align: center; }
+    [paste-safe] .linkbox a {
+      padding: 0.5em;
+      border-radius: 4px;
+      overflow: hidden; }
+  [paste-safe] .tooltip {
+    display: none; }
+    [paste-safe] .tooltip[data-show] {
+      display: block; }
+
+/*# sourceMappingURL=layout.css.map */

@@ -1,140 +1,5 @@
 @charset "utf-8";
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body {
-    height: 100%;
-    font-size: 12px;
-}
-
-.plate {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-$flyout-width: 32%;
-$flyout-time: 400ms;
-
-.flyout {
-    position: absolute;
-    width: $flyout-width; height: 100%;
-    top:0; left:0; bottom:0;
-    padding: 2em;
-    overflow: auto;
-
-    transition: left $flyout-time ease;
-    [data-flyout-state=hidden] & { left: -$flyout-width; }
-
-    & > * + * { margin-top: 1em; }
-    h1, h2 { 
-        text-align: center;
-        small { opacity: 0.5; font-size: 0.75em; font-weight: normal; }
-    }
-    h2 { font-size: 1.25em; opacity: 0.75; }
-    ul { padding-left: 1em; }
-    li + li { margin-top: 0.5em; }
-}
-
-.flyout-toggle-button {
-    position: absolute;
-    top:0; right:0;
-    cursor: pointer;
-    padding: 0.5em;
-    margin: auto;
-
-    .app & {
-        right: auto;
-        left: 0;
-        z-index: 1;
-    }
-}
-
-.app {
-    position: absolute;
-    width: 100% - $flyout-width; height: 100%;
-    top:0; right:0; bottom:0;
-
-    transition: width $flyout-time ease;
-    [data-flyout-state=hidden] & {
-        width: 100%;
-    }
-}
-
-[paste-safe] {
-    position: absolute;
-    top:0; bottom:0; left:0; right:0;
-    width: 100%; height: 100%;
-    padding: 10%;
-    margin: auto;
-    textarea { resize: none; }
-
-    .controls {
-        display: table;
-        width: 100%; height: 10%;
-        text-align: center;
-        .cell {
-            vertical-align: middle;
-            display: table-cell;
-        }
-        .cell.mode-button {
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .passbox {
-            display: block;
-            position: relative;
-            width: 100%; height: 100%;
-            .tooltip {
-              z-index: 1;
-              position: absolute;
-              bottom: 80%; right: 10%;
-              width: 80%;
-              padding: 0.5em;
-            }
-        }
-        .password {
-            border: none;
-            width: 100%; height: 100%;
-            text-align: center;
-            font-size: 1.2em;
-        }
-        .mode-button {
-            font-size: 1.5em;
-        }
-    }
-
-    .text-input, .text-output {
-        display: block;
-        position: relative;
-        width: 100%; height: 45%;
-        padding: 2%;
-        border: none;
-    }
-    .text-output {
-        height: 40%;
-    }
-
-    .linkbox {
-        display: block;
-        font-size: 1.5em;
-        width: 100%;
-        text-align: center;
-        a {
-            padding: 0.5em;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-    }
-
-    .tooltip {
-        display: none;
-        &[data-show] { display: block; }
-    }
-}
-
-///////////////// Layout Above / Appearance Below ////////////////////////////
-
 $color-background: #222;
 $color-flyout: #EEE;
 
@@ -154,7 +19,10 @@ $color-input-text: #666;
 $color-output: transparent;
 $color-output-text: mix(white, $color-background, 75%);
 
-$color-link-background: transparentize(white, 0.9);
+$color-link-background: transparentize(lighten($color-background, 4%), 0.1);
+
+$color-important-note-background: #9A4848;
+
 
 html {
     font-family: sans-serif;
@@ -167,6 +35,12 @@ html {
 .flyout {
     background: $color-flyout;
     color: transparentize($color-background, 0.2);
+    .important-note {
+        h2 > span { text-decoration: underline; }
+        background: $color-important-note-background;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 1px 1px 1px rgba(0,0,0, 0.6);
+    }
 }
 
 .flyout-toggle-button {
@@ -206,7 +80,7 @@ html {
                 background: $color-active-mode;
             } 
         }
-        .password {
+        .key {
             background: $color-password;
             font-family: Consolas, monospace;
             color: $color-highlight;

@@ -1,7 +1,8 @@
-////
-//// PasteSafe web app.
-//// TODO: Refactor all of this.
-////
+//
+// # PasteSafe web app.
+// This is all just late-night stream-of-consciousness programming right here.
+// TODO: Refactor all of this.
+//
 
 import * as pastesafe from "./library/pastesafe/pastesafe";
 
@@ -16,19 +17,29 @@ if (production && !/https/i.test(window.location.protocol))
 const root            = <HTMLElement>         document.querySelector('[paste-safe]');
 const textInput       = <HTMLTextAreaElement> root.querySelector('.text-input');
 const textOutput      = <HTMLTextAreaElement> root.querySelector('.text-output');
-const passwordInput   = <HTMLInputElement>    root.querySelector('.password');
+const passwordInput   = <HTMLInputElement>    root.querySelector('.key');
 const passwordTooltip = <HTMLDivElement>      root.querySelector('.passbox .tooltip');
 const encryptButton   = <HTMLInputElement>    root.querySelector('.encrypt');
 const decryptButton   = <HTMLInputElement>    root.querySelector('.decrypt');
 const outputBlocker   = <HTMLTextAreaElement> root.querySelector('.output-blocker');
 const bottomLink      = <HTMLAnchorElement>   root.querySelector('.bottom-link');
 
+// Preventing bottom link from being normally clicked.
+bottomLink.onclick = function(event) {
+    event.preventDefault;
+    return false;
+}
+
+// Hiding the word 'password' from the password input to avoid pesky password managers.
+passwordInput.setAttribute("type", "password");
+passwordInput.setAttribute("placeholder", "Password");
+
 // Start focused on password box.
 passwordInput.focus();
 
 var setBottomLink = (hex?: string) => {
     if (hex) {
-        bottomLink.href = "#" + hex;
+        bottomLink.href = officialBaseLink + "#" + hex;
         bottomLink.textContent = officialBaseLink + "#" + hex.substring(0, 8) + "...";
         bottomLink.setAttribute("data-show", "");
     }
@@ -125,12 +136,12 @@ encryptButton.addEventListener('change', instantAction);
 decryptButton.addEventListener('change', instantAction);
 
 // Flyout toggle.
-var plate = document.querySelector('.plate');
-plate.setAttribute("data-flyout-state", window.localStorage.getItem("flyout") || "active");
+var baseplate = document.querySelector('.baseplate');
+baseplate.setAttribute("data-flyout-state", window.localStorage.getItem("flyout") || "active");
 function toggleHandler(event) {
-    var currentState = plate.getAttribute("data-flyout-state");
+    var currentState = baseplate.getAttribute("data-flyout-state");
     var newState = currentState==="active" ?"hidden" :"active";
-    plate.setAttribute("data-flyout-state", newState);
+    baseplate.setAttribute("data-flyout-state", newState);
     window.localStorage.setItem("flyout", newState);
     if (event) event.preventDefault();
     return false;

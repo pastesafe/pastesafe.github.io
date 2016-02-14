@@ -5,8 +5,11 @@
   "scripts": {
     "setup": "npm i -g typescript && npm i -g webpack",
     "compile": "tsc && webpack ./build/script.js build/script.bundle.js",
-    "sass": "node-sass --source-map true style.scss build/style.css",
-    "sass-watch": "node-sass --source-map true --watch style.scss build/style.css",
+    "sass-layout": "node-sass --source-map true style/layout.scss build/layout.css",
+    "sass-watch-layout": "node-sass --source-map true --watch style/layout.scss build/layout.css",
+    "sass-vibes": "node-sass --source-map true style/vibes.scss build/vibes.css",
+    "sass-watch-vibes": "node-sass --source-map true --watch style/vibes.scss build/vibes.css",
+    "sass": "npm run sass-layout & npm run sass-vibes",
     "build": "rimraf build && (npm run compile & npm run sass) && echo Build complete."
   },
   "author": "Chase Moskal",

@@ -1,7 +1,8 @@
-// # The PasteSafe Module
-// *Simple functions for encrypting and decrypting text via Web Crypto API.*
+/// <reference path="typings/tsd.d.ts"/>
 define(["require", "exports"], function (require, exports) {
     "use strict";
+    // # The PasteSafe Module
+    // *Simple functions for encrypting and decrypting text via Web Crypto API.*
     // - This pastesafe module is built on the *Web Crypto API* ([mdn](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), [w3c](https://www.w3.org/TR/WebCryptoAPI/)), and exposes two convenient functions: `encrypt` and `decrypt`.
     // - This is the heart of the instant crypto web app: [**pastesafe.github.io**](https://pastesafe.github.io/).
     // - See this project's [**GitHub page**](https://github.com/PasteSafe/pastesafe).

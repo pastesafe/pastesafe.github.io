@@ -44,10 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;////
-	//// PasteSafe web app.
-	//// TODO: Refactor all of this.
-	////
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//
+	// # PasteSafe web app.
+	// This is all just late-night stream-of-consciousness programming right here.
+	// TODO: Refactor all of this.
+	//
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, pastesafe) {
 	    "use strict";
 	    var officialBaseLink = "https://pastesafe.github.io/";
@@ -59,17 +60,25 @@
 	    var root = document.querySelector('[paste-safe]');
 	    var textInput = root.querySelector('.text-input');
 	    var textOutput = root.querySelector('.text-output');
-	    var passwordInput = root.querySelector('.password');
+	    var passwordInput = root.querySelector('.key');
 	    var passwordTooltip = root.querySelector('.passbox .tooltip');
 	    var encryptButton = root.querySelector('.encrypt');
 	    var decryptButton = root.querySelector('.decrypt');
 	    var outputBlocker = root.querySelector('.output-blocker');
 	    var bottomLink = root.querySelector('.bottom-link');
+	    // Preventing bottom link from being normally clicked.
+	    bottomLink.onclick = function (event) {
+	        event.preventDefault;
+	        return false;
+	    };
+	    // Hiding the word 'password' from the password input to avoid pesky password managers.
+	    passwordInput.setAttribute("type", "password");
+	    passwordInput.setAttribute("placeholder", "Password");
 	    // Start focused on password box.
 	    passwordInput.focus();
 	    var setBottomLink = function (hex) {
 	        if (hex) {
-	            bottomLink.href = "#" + hex;
+	            bottomLink.href = officialBaseLink + "#" + hex;
 	            bottomLink.textContent = officialBaseLink + "#" + hex.substring(0, 8) + "...";
 	            bottomLink.setAttribute("data-show", "");
 	        }
@@ -158,12 +167,12 @@
 	    encryptButton.addEventListener('change', instantAction);
 	    decryptButton.addEventListener('change', instantAction);
 	    // Flyout toggle.
-	    var plate = document.querySelector('.plate');
-	    plate.setAttribute("data-flyout-state", window.localStorage.getItem("flyout") || "active");
+	    var baseplate = document.querySelector('.baseplate');
+	    baseplate.setAttribute("data-flyout-state", window.localStorage.getItem("flyout") || "active");
 	    function toggleHandler(event) {
-	        var currentState = plate.getAttribute("data-flyout-state");
+	        var currentState = baseplate.getAttribute("data-flyout-state");
 	        var newState = currentState === "active" ? "hidden" : "active";
-	        plate.setAttribute("data-flyout-state", newState);
+	        baseplate.setAttribute("data-flyout-state", newState);
 	        window.localStorage.setItem("flyout", newState);
 	        if (event)
 	            event.preventDefault();
@@ -196,10 +205,11 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// # The PasteSafe Module
-	// *Simple functions for encrypting and decrypting text via Web Crypto API.*
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/// <reference path="typings/tsd.d.ts"/>
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
 	    "use strict";
+	    // # The PasteSafe Module
+	    // *Simple functions for encrypting and decrypting text via Web Crypto API.*
 	    // - This pastesafe module is built on the *Web Crypto API* ([mdn](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), [w3c](https://www.w3.org/TR/WebCryptoAPI/)), and exposes two convenient functions: `encrypt` and `decrypt`.
 	    // - This is the heart of the instant crypto web app: [**pastesafe.github.io**](https://pastesafe.github.io/).
 	    // - See this project's [**GitHub page**](https://github.com/PasteSafe/pastesafe).

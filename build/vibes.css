@@ -1,0 +1,84 @@
+html {
+  font-family: sans-serif; }
+
+*::selection {
+  background: rgba(255, 85, 0, 0.5); }
+
+.flyout {
+  background: #EEE;
+  color: rgba(34, 34, 34, 0.8); }
+  .flyout .important-note {
+    background: #9A4848;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6); }
+    .flyout .important-note h2 > span {
+      text-decoration: underline; }
+
+.flyout-toggle-button {
+  transition: opacity 400ms ease;
+  opacity: 0.4; }
+  .flyout-toggle-button:hover {
+    opacity: 0.9;
+    text-decoration: underline; }
+  .flyout-toggle-button:active {
+    opacity: 1;
+    color: #F50; }
+  .app .flyout-toggle-button {
+    color: #EEE; }
+  [data-flyout-state=active] .app .flyout-toggle-button {
+    opacity: 0; }
+
+[paste-safe] {
+  background: #222; }
+  [paste-safe] .controls *, [paste-safe] .text-input {
+    outline: 3px solid transparent;
+    transition: outline 200ms ease; }
+  [paste-safe] .controls *:focus, [paste-safe] .text-input:focus {
+    outline: 3px solid #F50; }
+  [paste-safe] .text-output {
+    outline: none; }
+  [paste-safe] .controls {
+    background: #EEE; }
+    [paste-safe] .controls .mode-button {
+      background: #bbbbbb;
+      color: #FFF;
+      text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3); }
+      [paste-safe] .controls .mode-button[data-checked] {
+        background: #2B6; }
+    [paste-safe] .controls .key {
+      background: transparent;
+      font-family: Consolas, monospace;
+      color: #F50;
+      font-weight: bold; }
+  [paste-safe] .text-input {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; }
+  [paste-safe] .text-output {
+    background: transparent;
+    color: #c8c8c8; }
+  [paste-safe] .output-blocker {
+    background: rgba(34, 34, 34, 0.2);
+    color: #CCC; }
+    [paste-safe] .output-blocker li {
+      font-size: 1.4em; }
+    [paste-safe] .output-blocker[data-mode=error] {
+      color: #F50; }
+  [paste-safe] .linkbox a {
+    text-decoration: none;
+    background: transparent;
+    color: #2C89FF;
+    transition: color 200ms ease; }
+    [paste-safe] .linkbox a[data-show] {
+      background: rgba(44, 44, 44, 0.9); }
+    [paste-safe] .linkbox a:hover {
+      color: #5fa6ff; }
+    [paste-safe] .linkbox a:active {
+      color: #F50; }
+  [paste-safe] .tooltip {
+    background: rgba(255, 136, 0, 0.95);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
+
+/*# sourceMappingURL=vibes.css.map */

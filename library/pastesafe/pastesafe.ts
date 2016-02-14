@@ -1,3 +1,5 @@
+/// <reference path="typings/tsd.d.ts"/>
+
 // # The PasteSafe Module
 // *Simple functions for encrypting and decrypting text via Web Crypto API.*
 
