@@ -15,14 +15,14 @@
                 document.head.appendChild(script);
                 return script;
             }
-            
+
             // Debug mode -- use requirejs.
             if (/^\??debug/i.test(location.search)) {
                 loadScript("library/requirejs/require.js", function() {
                     require(["build/script"]);
                 });
             }
-            
+
             // Production -- use webpack bundle.
             else {
                 loadScript("build/script.bundle.js");

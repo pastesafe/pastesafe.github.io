@@ -37,7 +37,7 @@ passwordInput.setAttribute("placeholder", "Password");
 // Start focused on password box.
 passwordInput.focus();
 
-var setBottomLink = (hex?: string) => {
+const setBottomLink = (hex?: string) => {
     if (hex) {
         bottomLink.href = officialBaseLink + "#" + hex;
         bottomLink.textContent = officialBaseLink + "#" + hex.substring(0, 8) + "...";
@@ -51,7 +51,7 @@ var setBottomLink = (hex?: string) => {
 };
 setBottomLink();
 
-var getCryptionMode = () => {
+const getCryptionMode = () => {
     let checkedRadioButton = <HTMLInputElement> root.querySelector('input[name=cryption_mode]:checked');
     return checkedRadioButton.value;
 };
