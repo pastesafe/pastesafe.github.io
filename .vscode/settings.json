@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "bower_components": true,
+        "node_modules": true,
+        "**/*.css": true,
+        "**/*.js": true,
+        "**/*.d.ts": true,
+        "**/*.map": true
+    },
+    "search.exclude": {
+        "bower_components": true,
+        "node_modules": true,
+        "**/*.css": true,
+        "**/*.js": true,
+        "**/*.d.ts": true,
+        "**/*.map": true
+    }
+}

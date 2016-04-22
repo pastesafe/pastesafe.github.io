@@ -29,7 +29,7 @@ $flyout-time: 400ms;
         padding: 0.5em 2em;
         &:first-child {
             text-align: center;
-            p { text-align: left; }
+            // p { text-align: left; }
         }
         & > * + * { margin-top: 0.5em; }
     }

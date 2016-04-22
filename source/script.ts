@@ -4,7 +4,7 @@
 // TODO: Refactor all of this.
 //
 
-import * as pastesafe from "./library/pastesafe/pastesafe";
+import * as pastesafe from "../bower_components/pastesafe/pastesafe";
 
 const officialBaseLink = "https://pastesafe.github.io/";
 

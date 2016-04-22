@@ -27,8 +27,6 @@ html, body {
     padding: 0.5em 2em; }
     .flyout section:first-child {
       text-align: center; }
-      .flyout section:first-child p {
-        text-align: left; }
     .flyout section > * + * {
       margin-top: 0.5em; }
   .flyout h1 small, .flyout h2 small {

@@ -4,11 +4,10 @@
         "target": "es5",
         "sourceMap": true,
         "rootDir": ".",
-        "outDir": "build"
+        "outDir": "."
     },
     "exclude": [
-        "build",
-        "library",
+        "bower_components",
         "node_modules"
     ]
 }

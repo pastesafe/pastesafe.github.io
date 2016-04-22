@@ -4,8 +4,8 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=1000px"/>
         <title>PasteSafe</title>
-        <link rel="stylesheet"" href="build/layout.css"/>
-        <link rel="stylesheet"" href="build/vibes.css"/>
+        <link rel="stylesheet"" href="source/style/layout.css"/>
+        <link rel="stylesheet"" href="source/style/vibes.css"/>
         <script>
 
             function loadScript(link, onload) {
@@ -18,14 +18,14 @@
 
             // Debug mode -- use requirejs.
             if (/^\??debug/i.test(location.search)) {
-                loadScript("library/requirejs/require.js", function() {
-                    require(["build/script"]);
+                loadScript("bower_components/requirejs/require.js", function() {
+                    require(["source/script"]);
                 });
             }
 
             // Production -- use webpack bundle.
             else {
-                loadScript("build/script.bundle.js");
+                loadScript("source/script.bundle.js");
             }
 
         </script>

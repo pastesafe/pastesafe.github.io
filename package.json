@@ -3,19 +3,20 @@
   "private": true,
   "description": "Instant web cryptography",
   "scripts": {
-    "setup": "npm i -g typescript && npm i -g webpack",
-    "compile": "tsc && webpack ./build/script.js build/script.bundle.js",
-    "sass-layout": "node-sass --source-map true style/layout.scss build/layout.css",
-    "sass-watch-layout": "node-sass --source-map true --watch style/layout.scss build/layout.css",
-    "sass-vibes": "node-sass --source-map true style/vibes.scss build/vibes.css",
-    "sass-watch-vibes": "node-sass --source-map true --watch style/vibes.scss build/vibes.css",
+    "install": "bower install",
+    "compile": "tsc && webpack ./source/script.js source/script.bundle.js",
     "sass": "npm run sass-layout & npm run sass-vibes",
-    "build": "rimraf build && (npm run compile & npm run sass) && echo Build complete."
+    "sass-layout": "node-sass --source-map true source/style/layout.scss source/style/layout.css",
+    "sass-vibes": "node-sass --source-map true source/style/vibes.scss source/style/vibes.css",
+    "build": "(npm run compile & npm run sass) && echo Build complete."
   },
   "author": "Chase Moskal",
   "license": "MIT",
   "devDependencies": {
+    "bower": "^1.7.9",
     "node-sass": "^3.4.2",
-    "rimraf": "^2.5.1"
+    "rimraf": "^2.5.1",
+    "typescript": "^1.8.10",
+    "webpack": "^1.13.0"
   }
 }

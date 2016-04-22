@@ -3,7 +3,7 @@
 // This is all just late-night stream-of-consciousness programming right here.
 // TODO: Refactor all of this.
 //
-define(["require", "exports", "./library/pastesafe/pastesafe"], function (require, exports, pastesafe) {
+define(["require", "exports", "../bower_components/pastesafe/pastesafe"], function (require, exports, pastesafe) {
     "use strict";
     var officialBaseLink = "https://pastesafe.github.io/";
     // Forcing HTTPS in production.
