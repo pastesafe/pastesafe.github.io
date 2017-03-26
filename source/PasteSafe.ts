@@ -37,7 +37,7 @@ export default class PasteSafe {
   constructor({root, officialBaseLink}: PasteSafeOptions) {
     this.officialBaseLink = officialBaseLink
 
-    // Querying for HTML elements under the provided root element.
+    // Query for HTML elements under the provided root element.
     this.elements = {
       root,
       textInput:       <HTMLTextAreaElement> root.querySelector(".text-input"),
@@ -50,39 +50,37 @@ export default class PasteSafe {
       bottomLink:      <HTMLAnchorElement>   root.querySelector(".bottom-link")
     }
 
-    // Preventing bottom link from being normally clicked.
+    // Prevent standard click action on the bottom link.
     this.elements.bottomLink.onclick = function(event) {
         event.preventDefault
         return false
     }
 
-    // Hiding the word 'password' from the password input to avoid pesky password managers.
+    // Hide the word 'password' from the password input, to avoid pesky password managers.
     this.elements.passwordInput.setAttribute("type", "password")
     this.elements.passwordInput.setAttribute("placeholder", "Password")
 
-    // Start focused on password box.
+    // Start with focus on the password box.
     this.elements.passwordInput.focus()
 
-    // Start the bottom link empty.
+    // Start with the bottom link empty.
     this.setBottomLink()
 
-    // Event listeners for the cryption mode radio buttons.
+    // Event bindings for cryption mode change.
     this.elements.encryptButton.addEventListener("change", () => this.refreshCryptionMode())
     this.elements.decryptButton.addEventListener("change", () => this.refreshCryptionMode())
     this.refreshCryptionMode()
 
-    // Bindings for instant action.
+    // Event bindings for instant encryption/decryption.
     this.elements.textInput.addEventListener("keyup", () => this.instantAction())
     this.elements.passwordInput.addEventListener("keyup", () => this.instantAction())
     this.elements.encryptButton.addEventListener("change", () => this.instantAction())
     this.elements.decryptButton.addEventListener("change", () => this.instantAction())
+    this.instantAction()
 
-    // Initializing with decryption data from URL.
+    // Consume ciphertext to decrypt from the URL hash fragment.
     window.addEventListener("hashchange", () => this.interpretHash())
     this.interpretHash()
-
-    // Initial instant action.
-    this.instantAction()
   }
 
   /**
@@ -101,11 +99,26 @@ export default class PasteSafe {
     }
   }
 
-  private getCryptionMode() {
+  /**
+   * Return whether we are in "encrypt" or "decrypt" mode.
+   */
+  private getCryptionMode(): string | "encrypt" | "decrypt" {
     const checkedRadioButton = <HTMLInputElement> this.elements.root.querySelector("input[name=cryption_mode]:checked")
     return checkedRadioButton.value
   }
 
+  /**
+   * Change the cryption mode to "encrypt" or "decrypt".
+   */
+  private setCryptionMode(mode: "encrypt" | "decrypt") {
+    this.elements.encryptButton.checked = (mode === "encrypt") ? true : false;
+    this.elements.decryptButton.checked = (mode === "decrypt") ? true : false;
+    this.refreshCryptionMode()
+  }
+
+  /**
+   * Set the [data-cryption-mode] attribute to "encrypt" or "decrypt", and update button states.
+   */
   private refreshCryptionMode() {
     if (this.getCryptionMode() === "encrypt") {
         this.elements.root.setAttribute("data-cryption-mode", "encrypt")
@@ -119,24 +132,21 @@ export default class PasteSafe {
     }
   }
 
-  private setCryptionMode(mode) {
-    this.elements.encryptButton.checked = (mode==="encrypt") ? true : false;
-    this.elements.decryptButton.checked = (mode==="decrypt") ? true : false;
-    this.refreshCryptionMode();
-  }
-
+  /**
+   * Perform encryption or decryption.
+   *  - debounced so it can only happen once at a time.
+   */
   private async instantAction() {
     if (this.instantActionInProgress) return
     this.instantActionInProgress = true
 
     this.elements.passwordTooltip.removeAttribute("data-show")
 
-    const cryptionMode = this.getCryptionMode()
-
+    // If there is text input and there is password input, proceed with the instant action.
     if (!!this.elements.textInput.value && !!this.elements.passwordInput.value) {
 
         // Perform encryption.
-        if (cryptionMode === "encrypt") {
+        if (this.getCryptionMode() === "encrypt") {
             const password = this.elements.passwordInput.value
             const plaintext = this.elements.textInput.value
             try {
@@ -148,7 +158,7 @@ export default class PasteSafe {
               this.elements.textOutput.textContent = ""
               this.setBottomLink()
             }
-            this.instantActionInProgress = false
+            
         }
 
         // Perform decryption.
@@ -163,26 +173,31 @@ export default class PasteSafe {
               this.elements.textOutput.textContent = ""
             }
             this.setBottomLink()
-            this.instantActionInProgress = false
         }
     }
+
+    // Otherwise the iputs are incomplete, so we just clear things out.
     else {
-        this.elements.textOutput.textContent = "";
-        this.setBottomLink();
-        this.instantActionInProgress = false;
+        this.elements.textOutput.textContent = ""
+        this.setBottomLink()
     }
+
+    this.instantActionInProgress = false
   }
 
+  /**
+   * Consume and decrypt ciphertext in the URL hash fragment.
+   */
   private interpretHash() {
     const hash = /(?:^|#)([0-9a-fA-f]{10,})/i.exec(window.location.hash);
     if (hash) {
-        const hex = hash[1];
-        this.elements.textInput.value = hex;
-        this.setCryptionMode("decrypt");
-        this.elements.passwordInput.focus();
-        this.instantAction();
-        this.elements.passwordTooltip.setAttribute("data-show", "");
+        const hex = hash[1]
+        this.elements.textInput.value = hex
+        this.setCryptionMode("decrypt")
+        this.elements.passwordInput.focus()
+        this.instantAction()
+        this.elements.passwordTooltip.setAttribute("data-show", "")
     }
-    window.location.hash = ""; // Removing hash afterwards.
+    window.location.hash = "" // Removing hash afterwards.
   }
 }
