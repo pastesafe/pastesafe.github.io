@@ -4,38 +4,15 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=1000px"/>
         <title>PasteSafe</title>
-        <link rel="stylesheet"" href="source/style/layout.css"/>
-        <link rel="stylesheet"" href="source/style/vibes.css"/>
-        <script>
-
-            function loadScript(link, onload) {
-                var script = document.createElement("script");
-                if (onload) script.onload = onload;
-                script.src = link;
-                document.head.appendChild(script);
-                return script;
-            }
-
-            // Debug mode -- use requirejs.
-            if (/^\??debug/i.test(location.search)) {
-                loadScript("bower_components/requirejs/require.js", function() {
-                    require(["source/script"]);
-                });
-            }
-
-            // Production -- use webpack bundle.
-            else {
-                loadScript("source/script.bundle.js");
-            }
-
-        </script>
+        <link rel="stylesheet" href="source/style/layout.css"/>
+        <link rel="stylesheet" href="source/style/vibes.css"/>
     </head>
     <body>
         <div class="baseplate" data-flyout-state="active">
             <div class="flyout">
                 <section>
                     <h1>
-                        PasteSafe <small>– 0.4.0</small>
+                        PasteSafe <small>– 0.5.3</small>
                         <br/><small>Instant Web Cryptography</small>
                     </h1>
                     <p>Instantly encrypt text with a password as you type.</p>
@@ -59,14 +36,14 @@
                     <p><strong>Contributors and reviewers are welcome!</strong></p>
                     <ul class="inline">
                         <li><a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub Project</a></li>
-                        <li><a href="https://github.com/PasteSafe/pastesafe.github.io/blob/master/LICENSE">MIT License</a></li>
+                        <li><a href="https://github.com/PasteSafe/pastesafe.github.io/blob/master/license">ISC License</a></li>
                     </ul>
                 </section>
                 <section>
                     <h2>Your web browser is performing the encryption.</h2>
-                    <p>Your data never leaves your computer. There is no serverside work here, just a flat HTML page hosted on <a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub</a>. This technology is built on the experimental <a href="https://www.w3.org/TR/WebCryptoAPI/">Web Cryptography API</a>.</p>
+                    <p>Your data never leaves your computer. There is no serverside work here, just a flat HTML page hosted on <a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub</a>. This technology is built on the <a href="https://www.w3.org/TR/WebCryptoAPI/">Web Cryptography API</a>.</p>
                     <ul class="inline">
-                        <li>AES-256-CGM</li>
+                        <li>AES-256-GCM</li>
                         <li>128 Byte IV</li>
                         <li>Hexadecimal output</li>
                     </ul>
@@ -111,5 +88,7 @@
                 </div>
             </section>
         </div>
+
+        <script src="build/main.bundle.js"></script>
     </body>
 </html>

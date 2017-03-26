@@ -1,7 +1,0 @@
-{
-  "name": "pastesafe-app",
-  "dependencies": {
-    "pastesafe": "^0.2",
-    "requirejs": "^2.2.0"
-  }
-}

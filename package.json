@@ -3,20 +3,25 @@
   "private": true,
   "description": "Instant web cryptography",
   "scripts": {
-    "install": "bower install",
-    "compile": "tsc && webpack ./source/script.js source/script.bundle.js",
-    "sass": "npm run sass-layout & npm run sass-vibes",
-    "sass-layout": "node-sass --source-map true source/style/layout.scss source/style/layout.css",
-    "sass-vibes": "node-sass --source-map true source/style/vibes.scss source/style/vibes.css",
-    "build": "(npm run compile & npm run sass) && echo Build complete."
+    "build": "rimraf build && run-p build-scripts build-styles && echo Build complete.",
+    "build-scripts": "tsc && browserify build/main.js | uglifyjs -m > build/main.bundle.js",
+    "build-styles": "run-p build-styles-layout build-styles-vibes",
+    "build-styles-layout": "node-sass --source-map true source/style/layout.scss build/style/layout.css",
+    "build-styles-vibes": "node-sass --source-map true source/style/vibes.scss build/style/vibes.css",
+    "start": "http-server -p 8080"
   },
   "author": "Chase Moskal",
-  "license": "MIT",
+  "license": "ISC",
+  "dependencies": {
+    "pcrypto": "^0.5.2"
+  },
   "devDependencies": {
-    "bower": "^1.7.9",
-    "node-sass": "^3.4.2",
-    "rimraf": "^2.5.1",
-    "typescript": "^1.8.10",
-    "webpack": "^1.13.0"
+    "browserify": "^14.1.0",
+    "http-server": "^0.9.0",
+    "node-sass": "^4.5.1",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "typescript": "^2.2.1",
+    "uglify-js": "^2.8.16"
   }
 }
