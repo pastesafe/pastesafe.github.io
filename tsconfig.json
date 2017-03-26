@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
-        "module": "amd",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "target": "es5",
-        "sourceMap": true,
-        "rootDir": ".",
-        "outDir": "."
+        "lib": ["es2016", "dom"],
+        "rootDir": "source",
+        "outDir": "build",
+        "sourceMap": true
     },
     "exclude": [
         "bower_components",

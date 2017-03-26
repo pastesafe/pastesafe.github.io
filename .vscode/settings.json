@@ -1,18 +1,20 @@
 {
-    "files.exclude": {
-        "bower_components": true,
-        "node_modules": true,
-        "**/*.css": true,
-        "**/*.js": true,
-        "**/*.d.ts": true,
-        "**/*.map": true
-    },
-    "search.exclude": {
-        "bower_components": true,
-        "node_modules": true,
-        "**/*.css": true,
-        "**/*.js": true,
-        "**/*.d.ts": true,
-        "**/*.map": true
-    }
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "indent",
+
+  "files.eol": "\n",
+  "files.encoding": "utf8",
+  "files.insertFinalNewline": true,
+
+  "files.exclude": {
+    "build": true,
+    "node_modules": true,
+    "*.log*": true
+  },
+
+  "typescript.tsdk": "./node_modules/typescript/lib/"
 }
