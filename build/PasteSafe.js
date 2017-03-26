@@ -35,7 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var officialBaseLink = "https://pastesafe.github.io/";
 var pcrypto = require("pcrypto");
 var PasteSafe = (function () {
     /**
@@ -46,10 +45,11 @@ var PasteSafe = (function () {
      *  - start the bottom link empty
      */
     function PasteSafe(_a) {
-        var root = _a.root;
+        var root = _a.root, officialBaseLink = _a.officialBaseLink;
         var _this = this;
         /** Activity indicator, to prevent concurrent cryption actions (forcing one-at-a-time). */
         this.instantActionInProgress = false;
+        this.officialBaseLink = officialBaseLink;
         // Querying for HTML elements under the provided root element.
         this.elements = {
             root: root,
@@ -94,8 +94,8 @@ var PasteSafe = (function () {
      */
     PasteSafe.prototype.setBottomLink = function (ciphertext) {
         if (ciphertext) {
-            this.elements.bottomLink.href = officialBaseLink + "#" + ciphertext;
-            this.elements.bottomLink.textContent = officialBaseLink + "#" + ciphertext.substring(0, 8) + "...";
+            this.elements.bottomLink.href = this.officialBaseLink + "#" + ciphertext;
+            this.elements.bottomLink.textContent = this.officialBaseLink + "#" + ciphertext.substring(0, 8) + "...";
             this.elements.bottomLink.setAttribute("data-show", "");
         }
         else {

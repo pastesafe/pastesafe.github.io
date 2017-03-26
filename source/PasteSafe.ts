@@ -1,13 +1,15 @@
 
-const officialBaseLink = "https://pastesafe.github.io/"
-
 import * as pcrypto from "pcrypto"
 
 export interface PasteSafeOptions {
   root: HTMLElement
+  officialBaseLink: string
 }
 
 export default class PasteSafe {
+
+  /** Base URL to the PasteSafe app. */
+  officialBaseLink: string
 
   /** HTML element references. */
   elements: {
@@ -32,7 +34,8 @@ export default class PasteSafe {
    *  - avoid password managers
    *  - start the bottom link empty
    */
-  constructor({root}: PasteSafeOptions) {
+  constructor({root, officialBaseLink}: PasteSafeOptions) {
+    this.officialBaseLink = officialBaseLink
 
     // Querying for HTML elements under the provided root element.
     this.elements = {
@@ -87,8 +90,8 @@ export default class PasteSafe {
    */
   private setBottomLink(ciphertext?: string) {
     if (ciphertext) {
-        this.elements.bottomLink.href = officialBaseLink + "#" + ciphertext
-        this.elements.bottomLink.textContent = officialBaseLink + "#" + ciphertext.substring(0, 8) + "..."
+        this.elements.bottomLink.href = this.officialBaseLink + "#" + ciphertext
+        this.elements.bottomLink.textContent = this.officialBaseLink + "#" + ciphertext.substring(0, 8) + "..."
         this.elements.bottomLink.setAttribute("data-show", "")
     }
     else {
