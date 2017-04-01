@@ -1,6 +1,7 @@
 {
   "name": "pastesafe-web-app",
   "private": true,
+  "version": "0.11.0",
   "description": "Instant web cryptography. Encrypt in as you type in realtime. Share and decrpyt ciphertext.",
   "scripts": {
     "build": "rimraf build && run-p build-scripts build-styles && echo Build complete.",
