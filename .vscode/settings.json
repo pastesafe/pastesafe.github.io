@@ -1,10 +1,6 @@
 {
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "editor.renderWhitespace": "boundary",
-  "editor.wordWrap": "on",
-  "editor.wrappingIndent": "indent",
 
   "files.eol": "\n",
   "files.encoding": "utf8",
