@@ -1,6 +1,6 @@
 
-pastesafe web app — [pastesafe.github.io](https://pastesafe.github.io/)
-=======================================================================
+pastesafe web app — [pastesafe.github.io](https://pastesafe.github.io/) <-- use the app
+=======================================================================================
 
 *instant web cryptography*
 
