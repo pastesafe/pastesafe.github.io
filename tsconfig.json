@@ -5,7 +5,7 @@
 		"target": "es5",
 		"lib": ["es2016", "dom"],
 		"rootDir": "source",
-		"outDir": "build",
+		"outDir": "dist",
 		"sourceMap": true
 	},
 	"exclude": [
