@@ -15,7 +15,7 @@
 	"author": "Chase Moskal",
 	"license": "ISC",
 	"dependencies": {
-		"pcrypto": "0.5.4"
+		"pcrypto": "0.5.5"
 	},
 	"devDependencies": {
 		"browserify": "14.4.0",
