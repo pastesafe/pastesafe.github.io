@@ -15,15 +15,15 @@
 	"author": "Chase Moskal",
 	"license": "ISC",
 	"dependencies": {
-		"pcrypto": "^0.5.4"
+		"pcrypto": "0.5.4"
 	},
 	"devDependencies": {
-		"browserify": "^14.1.0",
-		"http-server": "^0.10.0",
-		"node-sass": "^4.5.2",
-		"npm-run-all": "^4.0.2",
-		"rimraf": "^2.6.1",
-		"typescript": "^2.2.2",
-		"uglify-js": "^3.1.0"
+		"browserify": "14.1.0",
+		"http-server": "0.10.0",
+		"node-sass": "4.5.2",
+		"npm-run-all": "4.0.2",
+		"rimraf": "2.6.1",
+		"typescript": "2.2.2",
+		"uglify-js": "3.1.0"
 	}
 }
