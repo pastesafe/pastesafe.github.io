@@ -1,94 +1,94 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=1000px"/>
-        <title>PasteSafe</title>
-        <link rel="stylesheet" href="source/style/layout.css"/>
-        <link rel="stylesheet" href="source/style/vibes.css"/>
-    </head>
-    <body>
-        <div class="baseplate" data-flyout-state="active">
-            <div class="flyout">
-                <section>
-                    <h1>
-                        PasteSafe <small>– pre-release v0.11.0</small>
-                        <br/><small>Instant Web Cryptography</small>
-                    </h1>
-                    <p>Instantly encrypt text with a password as you type.</p>
-                </section>
-                <aside class="important-note">
-                    <h2>Pre-release warning: Code needs review!</h2>
-                    <p>PasteSafe is a work-in-progress, and has not yet been peer reviewed by the open source community.</p>
-                    <p>The security of any information used with this tool cannot be guaranteed – <strong>you may use this software at your own risk.</strong></p>
-                </aside>
-                <section>
-                    <h2>Easily share sensitive information via email.</h2>
-                    <ul>
-                        <li>Press 'Encrypt', enter a password, and enter your secret message.</li>
-                        <li>Email the link at the bottom to your friend. Click and drag it right into the email (or right click it, and copy the link address).</li>
-                        <li>Tell the password to your friend verbally, in person or perhaps over the phone – <em>don't just send the password via email.</em></li>
-                        <li>To see your message, your friend just clicks your link, and enters the password.</li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Free and open source.</h2>
-                    <p><strong>Contributors and reviewers are welcome!</strong></p>
-                    <ul class="inline">
-                        <li><a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub Project</a></li>
-                        <li><a href="https://github.com/PasteSafe/pastesafe.github.io/blob/master/license">ISC License</a></li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Your web browser is performing the encryption.</h2>
-                    <p>Your data never leaves your computer. There is no serverside work here, just a flat HTML page hosted on <a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub</a>. This technology is built on the <a href="https://www.w3.org/TR/WebCryptoAPI/">Web Cryptography API</a>.</p>
-                    <ul class="inline">
-                        <li>AES-256-GCM</li>
-                        <li>128 Byte IV</li>
-                        <li>Hexadecimal output</li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Browser support is lacking.</h2>
-                    <ul>
-                        <li><strong>Built for Chrome.</strong></li>
-                        <li>Works in Firefox (sort of).</li> 
-                        <li>Internet Explorer is not supported (for lack of TextEncoder).</li>
-                    </ul>
-                </section>
-                <a class="flyout-toggle-button">Close</a>
-            </div>
-            <section class="app">
-                <a class="flyout-toggle-button">Info</a>
-                <div paste-safe>
-                    <div class="controls">
-                        <label class="cell mode-button" for="encrypt" data-checked>
-                            <input id="encrypt" class="encrypt" type="radio" name="cryption_mode" value="encrypt" checked/>
-                            Encrypt
-                        </label>
-                        <label class="cell mode-button" for="decrypt">
-                            <input id="decrypt" class="decrypt" type="radio" name="cryption_mode" value="decrypt"/>
-                            Decrypt
-                        </label>
-                        <div class="cell">
-                            <div class="passbox">
-                                <!-- Avoiding the word "password" on the input, to hide from pesky password managers. -->
-                                <input class="key" type="text" placeholder="Key" autocomplete="off" maxlength="32"/>
-                                <div class="tooltip">
-                                    <p>Enter the password here to decrypt the message!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <textarea class="text-input" placeholder="Secret message"></textarea>
-                    <textarea class="text-output" readonly></textarea>
-                    <div class="linkbox">
-                        <a class="bottom-link" title="Shareable link" href="#"></a>
-                    </div>
-                </div>
-            </section>
-        </div>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=1000px"/>
+		<title>PasteSafe</title>
+		<link rel="stylesheet" href="source/style/layout.css"/>
+		<link rel="stylesheet" href="source/style/vibes.css"/>
+	</head>
+	<body>
+		<div class="baseplate" data-flyout-state="active">
+			<div class="flyout">
+				<section>
+					<h1>
+						PasteSafe <small>– pre-release v0.11.0</small>
+						<br/><small>Instant Web Cryptography</small>
+					</h1>
+					<p>Instantly encrypt text with a password as you type.</p>
+				</section>
+				<aside class="important-note">
+					<h2>Pre-release warning: Code needs review!</h2>
+					<p>PasteSafe is a work-in-progress, and has not yet been peer reviewed by the open source community.</p>
+					<p>The security of any information used with this tool cannot be guaranteed – <strong>you may use this software at your own risk.</strong></p>
+				</aside>
+				<section>
+					<h2>Easily share sensitive information via email.</h2>
+					<ul>
+						<li>Press 'Encrypt', enter a password, and enter your secret message.</li>
+						<li>Email the link at the bottom to your friend. Click and drag it right into the email (or right click it, and copy the link address).</li>
+						<li>Tell the password to your friend verbally, in person or perhaps over the phone – <em>don't just send the password via email.</em></li>
+						<li>To see your message, your friend just clicks your link, and enters the password.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Free and open source.</h2>
+					<p><strong>Contributors and reviewers are welcome!</strong></p>
+					<ul class="inline">
+						<li><a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub Project</a></li>
+						<li><a href="https://github.com/PasteSafe/pastesafe.github.io/blob/master/license">ISC License</a></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Your web browser is performing the encryption.</h2>
+					<p>Your data never leaves your computer. There is no serverside work here, just a flat HTML page hosted on <a href="https://github.com/PasteSafe/pastesafe.github.io">GitHub</a>. This technology is built on the <a href="https://www.w3.org/TR/WebCryptoAPI/">Web Cryptography API</a>.</p>
+					<ul class="inline">
+						<li>AES-256-GCM</li>
+						<li>128 Byte IV</li>
+						<li>Hexadecimal output</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Browser support is lacking.</h2>
+					<ul>
+						<li><strong>Built for Chrome.</strong></li>
+						<li>Works in Firefox (sort of).</li> 
+						<li>Internet Explorer is not supported (for lack of TextEncoder).</li>
+					</ul>
+				</section>
+				<a class="flyout-toggle-button">Close</a>
+			</div>
+			<section class="app">
+				<a class="flyout-toggle-button">Info</a>
+				<div paste-safe>
+					<div class="controls">
+						<label class="cell mode-button" for="encrypt" data-checked>
+							<input id="encrypt" class="encrypt" type="radio" name="cryption_mode" value="encrypt" checked/>
+							Encrypt
+						</label>
+						<label class="cell mode-button" for="decrypt">
+							<input id="decrypt" class="decrypt" type="radio" name="cryption_mode" value="decrypt"/>
+							Decrypt
+						</label>
+						<div class="cell">
+							<div class="passbox">
+								<!-- Avoiding the word "password" on the input, to hide from pesky password managers. -->
+								<input class="key" type="text" placeholder="Key" autocomplete="off" maxlength="32"/>
+								<div class="tooltip">
+									<p>Enter the password here to decrypt the message!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<textarea class="text-input" placeholder="Secret message"></textarea>
+					<textarea class="text-output" readonly></textarea>
+					<div class="linkbox">
+						<a class="bottom-link" title="Shareable link" href="#"></a>
+					</div>
+				</div>
+			</section>
+		</div>
 
-        <script src="build/main.bundle.js"></script>
-    </body>
+		<script src="build/main.bundle.js"></script>
+	</body>
 </html>

@@ -25,111 +25,111 @@ $color-important-note-background: #9A4848;
 
 
 html {
-    font-family: sans-serif;
+	font-family: sans-serif;
 }
 
 *::selection {
-    background: transparentize($color-highlight, 0.5);
+	background: transparentize($color-highlight, 0.5);
 }
 
 .flyout {
-    background: $color-flyout;
-    color: transparentize($color-background, 0.2);
-    .important-note {
-        h2 > span { text-decoration: underline; }
-        background: $color-important-note-background;
-        color: rgba(255, 255, 255, 0.9);
-        text-shadow: 1px 1px 1px rgba(0,0,0, 0.6);
-    }
+	background: $color-flyout;
+	color: transparentize($color-background, 0.2);
+	.important-note {
+		h2 > span { text-decoration: underline; }
+		background: $color-important-note-background;
+		color: rgba(255, 255, 255, 0.9);
+		text-shadow: 1px 1px 1px rgba(0,0,0, 0.6);
+	}
 }
 
 .flyout-toggle-button {
-    transition: opacity 400ms ease;
-    opacity: 0.4;
-    &:hover { opacity: 0.9; text-decoration: underline; }
-    &:active { opacity: 1; color: $color-highlight; }
-    .app & {
-        color: $color-flyout;
-    }
-    [data-flyout-state=active] .app & {
-        opacity: 0;
-    }
+	transition: opacity 400ms ease;
+	opacity: 0.4;
+	&:hover { opacity: 0.9; text-decoration: underline; }
+	&:active { opacity: 1; color: $color-highlight; }
+	.app & {
+		color: $color-flyout;
+	}
+	[data-flyout-state=active] .app & {
+		opacity: 0;
+	}
 }
 
 [paste-safe] {
-    background: $color-background;
+	background: $color-background;
 
-    .controls *, .text-input {
-        & {
-            outline: 3px solid transparent;
-            transition: outline 200ms ease;
-        }
-        &:focus {
-            outline: 3px solid $color-highlight;
-        }
-    }
-    .text-output { outline: none; }
+	.controls *, .text-input {
+		& {
+			outline: 3px solid transparent;
+			transition: outline 200ms ease;
+		}
+		&:focus {
+			outline: 3px solid $color-highlight;
+		}
+	}
+	.text-output { outline: none; }
 
-    .controls {
-        background: $color-controls;
-        .mode-button {
-            background: $color-mode-button;
-            color: $color-mode-button-text;
-            text-shadow: 1px 2px 3px rgba(0,0,0, 0.3);
-            &[data-checked] {
-                background: $color-active-mode;
-            } 
-        }
-        .key {
-            background: $color-password;
-            font-family: Consolas, monospace;
-            color: $color-highlight;
-            font-weight: bold;
-        }
-    }
+	.controls {
+		background: $color-controls;
+		.mode-button {
+			background: $color-mode-button;
+			color: $color-mode-button-text;
+			text-shadow: 1px 2px 3px rgba(0,0,0, 0.3);
+			&[data-checked] {
+				background: $color-active-mode;
+			} 
+		}
+		.key {
+			background: $color-password;
+			font-family: Consolas, monospace;
+			color: $color-highlight;
+			font-weight: bold;
+		}
+	}
 
-    .text-input {
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-    }
+	.text-input {
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
 
-    .text-output {
-        background: $color-output;
-        color: $color-output-text;
-    }
+	.text-output {
+		background: $color-output;
+		color: $color-output-text;
+	}
 
-    .output-blocker {
-        background: transparentize($color-background, 0.8);
-        color: #CCC;
-        li {
-            font-size: 1.4em;
-        }
-        &[data-mode=error] {
-            color: $color-highlight;
-        }
-    }
+	.output-blocker {
+		background: transparentize($color-background, 0.8);
+		color: #CCC;
+		li {
+			font-size: 1.4em;
+		}
+		&[data-mode=error] {
+			color: $color-highlight;
+		}
+	}
 
-    .linkbox {
-        a {
-            text-decoration: none;
-            background: transparent;
-            color: $color-link;
+	.linkbox {
+		a {
+			text-decoration: none;
+			background: transparent;
+			color: $color-link;
 
-            &[data-show] {
-                background: $color-link-background;
-            }
+			&[data-show] {
+				background: $color-link-background;
+			}
 
-            transition: color 200ms ease;
-            &:hover { color: lighten($color-link, 10%); }
-            &:active { color: $color-highlight; }
-        }
-    }
+			transition: color 200ms ease;
+			&:hover { color: lighten($color-link, 10%); }
+			&:active { color: $color-highlight; }
+		}
+	}
 
-    .tooltip {
-        background: $color-tooltip;
-        color: $color-tooltip-text;
-        border-radius: 8px;
-        box-shadow: 1px 2px 3px rgba(0,0,0, 0.15);
-        text-shadow: 1px 1px 2px rgba(0,0,0, 0.1);
-    }
+	.tooltip {
+		background: $color-tooltip;
+		color: $color-tooltip-text;
+		border-radius: 8px;
+		box-shadow: 1px 2px 3px rgba(0,0,0, 0.15);
+		text-shadow: 1px 1px 2px rgba(0,0,0, 0.1);
+	}
 }
