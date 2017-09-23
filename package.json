@@ -5,15 +5,17 @@
 	"description": "instant web cryptography. encrypt in as you type in realtime. share and decrypt ciphertext.",
 	"scripts": {
 		"prepare": "run-p build",
-		"build": "rimraf dist && run-p build-scripts build-styles && echo Build complete.",
-		"build-scripts": "tsc && run-p bundle-main bundle-script",
+		"build": "rimraf dist && run-p build-scripts build-styles && run-p build-archive && echo Done production build.",
+		"build-debug": "rimraf dist && run-p build-scripts-debug build-styles-debug && run-p build-archive && echo Done debug build.",
+		"build-scripts": "tsc && browserify dist/script.js -g [ envify --NODE_ENV production ] -g uglifyify -p bundle-collapser/plugin | uglifyjs --compress --mangle > dist/script.bundle.js",
+		"build-scripts-debug": "tsc && browserify dist/script.js > dist/script.bundle.js",
+		"build-styles": "node-sass source/style.scss dist/style.css",
+		"build-styles-debug": "node-sass --source-map true source/style.scss dist/style.css",
+		"start": "http-server -p 8080",
+		"build-archive": "run-p bundle-main build-styles-layout build-styles-vibes",
 		"bundle-main": "browserify dist/main.js | uglifyjs -m > dist/main.bundle.js",
-		"bundle-script": "browserify dist/script.js | uglifyjs -m > dist/script.bundle.js",
-		"build-styles": "run-p build-styles-layout build-styles-vibes build-styles-main",
 		"build-styles-layout": "node-sass --source-map true source/style/layout.scss dist/style/layout.css",
-		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css",
-		"build-styles-main": "node-sass --source-map true source/style.scss dist/style.css",
-		"start": "http-server -p 8080"
+		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css"
 	},
 	"author": "Chase Moskal",
 	"license": "ISC",
@@ -28,11 +30,14 @@
 		"@types/react": "16.0.5",
 		"@types/react-dom": "15.5.4",
 		"browserify": "14.4.0",
+		"bundle-collapser": "1.3.0",
+		"envify": "4.1.0",
 		"http-server": "0.10.0",
 		"node-sass": "4.5.3",
 		"npm-run-all": "4.1.1",
 		"rimraf": "2.6.2",
 		"typescript": "2.5.2",
-		"uglify-js": "3.1.0"
+		"uglify-js": "3.1.0",
+		"uglifyify": "4.0.4"
 	}
 }
