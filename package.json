@@ -6,10 +6,13 @@
 	"scripts": {
 		"prepare": "run-p build",
 		"build": "rimraf dist && run-p build-scripts build-styles && echo Build complete.",
-		"build-scripts": "tsc && browserify dist/main.js | uglifyjs -m > dist/main.bundle.js",
-		"build-styles": "run-p build-styles-layout build-styles-vibes",
+		"build-scripts": "tsc && run-p bundle-main bundle-script",
+		"bundle-main": "browserify dist/main.js | uglifyjs -m > dist/main.bundle.js",
+		"bundle-script": "browserify dist/script.js | uglifyjs -m > dist/script.bundle.js",
+		"build-styles": "run-p build-styles-layout build-styles-vibes build-styles-main",
 		"build-styles-layout": "node-sass --source-map true source/style/layout.scss dist/style/layout.css",
 		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css",
+		"build-styles-main": "node-sass --source-map true source/style.scss dist/style.css",
 		"start": "http-server -p 8080"
 	},
 	"author": "Chase Moskal",
