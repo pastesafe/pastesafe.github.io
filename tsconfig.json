@@ -6,7 +6,8 @@
 		"lib": ["es2016", "dom"],
 		"rootDir": "source",
 		"outDir": "dist",
-		"sourceMap": true
+		"sourceMap": true,
+		"jsx": "react"
 	},
 	"exclude": [
 		"bower_components",
