@@ -6,7 +6,7 @@
 	"scripts": {
 		"prepare": "run-p build",
 		"build": "rimraf dist && run-p build-scripts build-styles && run-p build-archive && echo Done production build.",
-		"build-debug": "rimraf dist && run-p build-scripts-debug build-styles-debug && run-p build-archive && echo Done debug build.",
+		"build-debug": "rimraf dist && run-p build-scripts-debug build-styles-debug && echo Done debug build.",
 		"build-scripts": "tsc && browserify dist/script.js -g [ envify --NODE_ENV production ] -g uglifyify -p bundle-collapser/plugin | uglifyjs --compress --mangle > dist/script.bundle.js",
 		"build-scripts-debug": "tsc && browserify dist/script.js > dist/script.bundle.js",
 		"build-styles": "node-sass source/style.scss dist/style.css",
