@@ -5,17 +5,39 @@ import {observer} from "mobx-react"
 
 import PasteSafeStore from "./pastesafe-store"
 
+interface Reference<T extends HTMLElement> {
+	ref: React.Ref<T>
+	element: T
+}
+
 @observer
 export default class PasteSafe extends React.Component<{store: PasteSafeStore}> {
+
+	private readonly references: { textInput: Reference<HTMLTextAreaElement> } = {
+		textInput: {
+			ref: element => this.references.textInput.element = element,
+			element: null
+		}
+	}
+
+	@action
+	private readonly updateTextInput = (input: string) => {
+		this.props.store.textInput = input.toString().trim()
+	}
 
 	@action
 	private readonly handleKeyInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
 		this.props.store.keyInput = event.currentTarget.value.toString().trim()
 	}
 
-	@action
 	private readonly handleTextInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
-		this.props.store.textInput = event.currentTarget.value.toString().trim()
+		this.updateTextInput(event.currentTarget.value)
+	}
+
+	private readonly handleSwap: React.MouseEventHandler<HTMLButtonElement> = event => {
+		const newInput = this.props.store.textOutput
+		this.references.textInput.element.value = newInput
+		this.updateTextInput(newInput)
 	}
 
 	render() {
@@ -27,7 +49,7 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 					- avoid the word "password" on the input, to hide from pesky password managers
 				*/}
 				<input
-					className="key"
+					className="key-input"
 					type="text"
 					placeholder="Key"
 					autoComplete="off"
@@ -39,11 +61,19 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 				<textarea
 					className="text-input"
 					placeholder="Secret message"
-					onChange={this.handleTextInputChange}>
+					onChange={this.handleTextInputChange}
+					ref={this.references.textInput.ref}>
 				</textarea>
 
 				{/* TEXT OUTPUT */}
-				<textarea className="text-output" readOnly value={store.textOutput}></textarea>
+				<textarea
+					className="text-output"
+					value={store.textOutput}
+					readOnly>
+				</textarea>
+
+				{/* SWAP BUTTON */}
+				<button className="swap-button" onClick={this.handleSwap}>Swap</button>
 
 				{/* ERROR REPORT */}
 				{store.error ?
