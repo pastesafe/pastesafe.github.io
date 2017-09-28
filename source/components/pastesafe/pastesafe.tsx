@@ -1,4 +1,5 @@
 
+import {action} from "mobx"
 import * as React from "react"
 import {observer} from "mobx-react"
 
@@ -7,10 +8,12 @@ import PasteSafeStore from "./pastesafe-store"
 @observer
 export default class PasteSafe extends React.Component<{store: PasteSafeStore}> {
 
+	@action
 	private readonly handleKeyInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
 		this.props.store.keyInput = event.currentTarget.value.toString().trim()
 	}
 
+	@action
 	private readonly handleTextInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
 		this.props.store.textInput = event.currentTarget.value.toString().trim()
 	}
