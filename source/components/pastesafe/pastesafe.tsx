@@ -36,8 +36,10 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 
 	private readonly handleSwap: React.MouseEventHandler<HTMLButtonElement> = event => {
 		const newInput = this.props.store.textOutput
-		this.references.textInput.element.value = newInput
-		this.updateTextInput(newInput)
+		if (newInput) {
+			this.references.textInput.element.value = newInput
+			this.updateTextInput(newInput)
+		}
 	}
 
 	render() {
@@ -73,7 +75,13 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 				</textarea>
 
 				{/* SWAP BUTTON */}
-				<button className="swap-button" onClick={this.handleSwap}>Swap</button>
+				{store.textOutput ?
+					<button
+						className="swap-button"
+						onClick={this.handleSwap}>
+							Swap
+					</button>
+					: null}
 
 				{/* ERROR REPORT */}
 				{store.error ?
