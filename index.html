@@ -4,10 +4,47 @@
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=1000px"/>
 		<title>pastesafe • instant web encryption</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:400,700"/>
 		<link rel="stylesheet" href="dist/style.css"/>
 	</head>
 	<body>
-		<div class="container"></div>
+		<div class="plate">
+
+			<div class="application">
+				<header>
+					<h1>pastesafe v0.12.0-dev</h1>
+					<p>instantly encrypt as you type</p>
+				</header>
+				<div class="pastesafe-container"></div>
+			</div>
+
+			<div class="content">
+				<section>
+					<h2>your web browser is performing the encryption itself</h2>
+					<p>whatever you enter into pastesafe never leaves your computer — there's no serverside work here, it's just a flat HTML page hosted on <a href="https://github.com/PasteSafe/pastesafe.github.io">github pages</a></p>
+					<p>built on the <a href="https://www.w3.org/TR/WebCryptoAPI/">web cryptography api</a>:</p>
+					<ul class="inline">
+						<li>aes-256-gcm</li>
+						<li>128 byte initialization vector</li>
+						<li>hexadecimal output</li>
+						<li>built for chrome</li>
+					</ul>
+				</section>
+				<section>
+					<h2>pre-release warning</h2>
+					<p>pastesafe is an work-in-progress experimental application — <strong>you may use this software at your own risk.</strong></p>
+				</section>
+				<section>
+					<h2>free and open source</h2>
+					<p>made with love on github</p>
+					<ul class="inline">
+						<li><a href="https://github.com/PasteSafe/pastesafe.github.io">project on github</a></li>
+						<li><a href="https://github.com/PasteSafe/pastesafe.github.io/blob/master/license">isc license</a></li>
+					</ul>
+				</section>
+			</div>
+
+		</div>
 		<script src="dist/script.bundle.js"></script>
 	</body>
 </html>

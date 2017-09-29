@@ -2,9 +2,9 @@
 import * as React from "react"
 import * as ReactDom from "react-dom"
 
-import Application from "./components/application/application"
-import ApplicationStore from "./components/application/application-store"
+import PasteSafe from "./components/pastesafe/pastesafe"
+import PasteSafeStore from "./components/pastesafe/pastesafe-store"
 
-const store = new ApplicationStore()
-
-ReactDom.render(<Application {...{store}}/>, document.querySelector("body > .container"))
+const pastesafe = <PasteSafe store={new PasteSafeStore()}/>
+const container = document.querySelector(".pastesafe-container")
+ReactDom.render(pastesafe, container)
