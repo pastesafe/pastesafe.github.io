@@ -1,7 +1,7 @@
 {
 	"name": "pastesafe-web-app",
 	"private": true,
-	"version": "0.12.0-dev",
+	"version": "0.12.0",
 	"description": "instant web cryptography. encrypt in as you type in realtime. share and decrypt ciphertext.",
 	"scripts": {
 		"prepare": "run-p build",
