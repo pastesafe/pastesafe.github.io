@@ -16,7 +16,8 @@
 		"build-archive": "run-p bundle-main build-styles-layout build-styles-vibes",
 		"bundle-main": "tsc && browserify dist/main.js | uglifyjs -m > dist/main.bundle.js",
 		"build-styles-layout": "node-sass --source-map true source/style/layout.scss dist/style/layout.css",
-		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css"
+		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css",
+		"watch-styles": "node-sass --watch --source-map true source/style.scss dist/style.css"
 	},
 	"author": "Chase Moskal",
 	"license": "ISC",
