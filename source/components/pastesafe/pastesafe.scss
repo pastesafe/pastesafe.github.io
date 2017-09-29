@@ -1,0 +1,47 @@
+
+.pastesafe {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	& > * {
+		margin: 0.5% 0;
+	}
+
+	.key-input {
+		width: 100%;
+		height: 2em;
+		padding: 0.5em;
+	}
+
+	.text-input {
+		flex: 1 0 auto;
+		width: 100%;
+		padding: 0.5em;
+	}
+
+	.text-output {
+		flex: 1 0 auto;
+		width: 100%;
+		padding: 0.5em;
+		background: linear-gradient(to bottom, #eee, #f8f8f8);
+	}
+
+	.swap-button {
+		padding: 0.5em;
+		display: inline-block;
+		font-size: 0.7em;
+		opacity: 0.5;
+		cursor: pointer;
+		text-align: right;
+	}
+
+	.error-report {
+		color: red;
+		text-align: center;
+	}
+
+	.share-link {
+		text-align: center;
+	}
+}

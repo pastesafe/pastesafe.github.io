@@ -1,0 +1,60 @@
+
+@charset "utf-8";
+
+@import "./components/pastesafe/pastesafe.scss";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	font-size: 16px;
+	font-family: "Encode Sans Expanded", sans-serif;
+	color: #555;
+}
+
+.plate {
+	height: 100%;
+	max-width: 960px;
+	margin: auto;
+}
+
+$common-spacing: 6%;
+
+.application {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: $common-spacing 0;
+	border-bottom: 2px solid #eee;
+
+	header {
+		padding: 1%;
+	}
+
+	.pastesafe-container {
+		padding: 1%;
+		flex-grow: 1;
+		display: flex;
+	}
+}
+
+.content {
+	padding: 1%;
+	padding-bottom: $common-spacing;
+
+	* + * {
+		margin-top: 0.5em;
+	}
+
+	ul, ol {
+		margin-left: 1.5em;
+	}
+
+	h2 {
+		margin-top: $common-spacing;
+	}
+}

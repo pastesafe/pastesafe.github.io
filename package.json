@@ -5,25 +5,38 @@
 	"description": "instant web cryptography. encrypt in as you type in realtime. share and decrypt ciphertext.",
 	"scripts": {
 		"prepare": "run-p build",
-		"build": "rimraf dist && run-p build-scripts build-styles && echo Build complete.",
-		"build-scripts": "tsc && browserify dist/main.js | uglifyjs -m > dist/main.bundle.js",
-		"build-styles": "run-p build-styles-layout build-styles-vibes",
-		"build-styles-layout": "node-sass --source-map true source/style/layout.scss dist/style/layout.css",
-		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css",
+		"clean": "rimraf dist && mkdir dist",
+		"build": "npm run clean -s && run-p build-scripts build-styles && echo Done production build.",
+		"build-debug": "npm run clean -s && run-p build-scripts-debug build-styles-debug && echo Done debug build.",
+		"build-scripts": "browserify source/script.tsx -p tsify -g [ envify --NODE_ENV production ] -p bundle-collapser/plugin | uglifyjs --compress --mangle > dist/script.bundle.js",
+		"build-scripts-debug": "browserify source/script.tsx --debug -p tsify > dist/script.bundle.js",
+		"build-styles": "node-sass source/style.scss dist/style.css",
+		"build-styles-debug": "node-sass --source-map true source/style.scss dist/style.css",
+		"watch-styles": "node-sass --watch --source-map true source/style.scss dist/style.css",
 		"start": "http-server -p 8080"
 	},
 	"author": "Chase Moskal",
 	"license": "ISC",
 	"dependencies": {
-		"pcrypto": "0.5.5"
+		"mobx": "3.3.0",
+		"mobx-react": "4.3.2",
+		"pcrypto": "0.5.5",
+		"react": "15.6.1",
+		"react-dom": "15.6.1"
 	},
 	"devDependencies": {
+		"@types/react": "16.0.5",
+		"@types/react-dom": "15.5.4",
 		"browserify": "14.4.0",
+		"bundle-collapser": "1.3.0",
+		"envify": "4.1.0",
 		"http-server": "0.10.0",
 		"node-sass": "4.5.3",
 		"npm-run-all": "4.1.1",
 		"rimraf": "2.6.2",
+		"tsify": "3.0.3",
 		"typescript": "2.5.2",
-		"uglify-js": "3.1.0"
+		"uglify-es": "3.1.2",
+		"uglifyify": "4.0.4"
 	}
 }
