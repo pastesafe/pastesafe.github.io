@@ -2,7 +2,7 @@
 import {encrypt, decrypt} from "pcrypto"
 import {observable, action, computed, autorunAsync} from "mobx"
 
-const looksDecryptable = (subject: string) => /^[a-zA-Z0-F]{24,}$/i.test(subject)
+const looksDecryptable = (subject: string) => /^[0-9a-f]{64,}$/i.test(subject)
 
 export default class PasteSafeStore {
 	@observable keyInput: string
@@ -21,6 +21,7 @@ export default class PasteSafeStore {
 				: ""
 		}
 		catch (err) {
+			err.message = `encrypt error: ${err.message}`
 			error = err
 			ciphertext = ""
 		}
@@ -39,6 +40,7 @@ export default class PasteSafeStore {
 				: ""
 		}
 		catch (err) {
+			err.message = `decrypt error: ${err.message}`
 			error = err
 			plaintext = ""
 		}
