@@ -1,4 +1,8 @@
 
+@mixin stonecold {
+	font-family: "Consolas", monospace;
+}
+
 .pastesafe {
 	display: flex;
 	flex-direction: column;
@@ -8,19 +12,22 @@
 		margin: 0.5% 0;
 	}
 
-	.key-input {
+	.password-input {
+		@include stonecold;
 		width: 100%;
 		height: 2em;
 		padding: 0.5em;
 	}
 
 	.text-input {
+		@include stonecold;
 		flex: 1 0 auto;
 		width: 100%;
 		padding: 0.5em;
 	}
 
 	.text-output {
+		@include stonecold;
 		flex: 1 0 auto;
 		width: 100%;
 		padding: 0.5em;

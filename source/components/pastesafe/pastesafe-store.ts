@@ -5,7 +5,7 @@ import {observable, action, computed, autorunAsync} from "mobx"
 const looksDecryptable = (subject: string) => /^[0-9a-f]{64,}$/i.test(subject)
 
 export default class PasteSafeStore {
-	@observable keyInput: string
+	@observable passwordInput: string
 	@observable textInput: string
 	@observable textOutput: string
 	@observable ciphertext: string
@@ -54,6 +54,6 @@ export default class PasteSafeStore {
 	}
 
 	private readonly reactions = [
-		autorunAsync(() => this.encryptOrDecrypt(this.textInput, this.keyInput))
+		autorunAsync(() => this.encryptOrDecrypt(this.textInput, this.passwordInput))
 	]
 }

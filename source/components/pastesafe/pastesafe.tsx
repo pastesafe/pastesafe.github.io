@@ -26,8 +26,8 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 	}
 
 	@action
-	private readonly handleKeyInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-		this.props.store.keyInput = event.currentTarget.value.toString().trim()
+	private readonly handlePasswordInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+		this.props.store.passwordInput = event.currentTarget.value.toString().trim()
 	}
 
 	private readonly handleTextInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
@@ -67,16 +67,14 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 		return (
 			<div className="pastesafe" data-error={!!store.errorMessage}>
 
-				{/* KEY INPUT
-					- avoid the word "password" on the input, to hide from pesky password managers
-				*/}
+				{/* PASSWORD INPUT */}
 				<input
-					className="key-input"
-					type="text"
-					placeholder="key"
+					className="password-input"
+					type="password"
+					placeholder="password"
 					autoComplete="off"
 					maxLength={2048}
-					onChange={this.handleKeyInputChange}
+					onChange={this.handlePasswordInputChange}
 				/>
 
 				{/* TEXT INPUT */}
