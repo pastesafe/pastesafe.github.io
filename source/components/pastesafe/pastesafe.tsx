@@ -13,11 +13,11 @@ interface Reference<T extends HTMLElement> {
 @observer
 export default class PasteSafe extends React.Component<{store: PasteSafeStore}> {
 
-	private readonly references: { textInput: Reference<HTMLTextAreaElement> } = {
+	private readonly references = {
 		textInput: {
 			ref: element => this.references.textInput.element = element,
 			element: null
-		}
+		} as Reference<HTMLTextAreaElement>
 	}
 
 	@action
