@@ -110,7 +110,7 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 				{/* SHARE LINK */}
 				{store.ciphertext ?
 					<a className="share-link" title="shareable link" href={"#" + store.ciphertext}>
-						{window.location.href + "#" + store.ciphertext.substring(0, 8) + "..."}
+						{`${window.location.hostname}${window.location.pathname}#${store.ciphertext.substring(0, 8)}...`}
 					</a>
 					: null}
 

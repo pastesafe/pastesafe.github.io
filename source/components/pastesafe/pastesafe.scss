@@ -24,6 +24,7 @@
 		flex: 1 0 auto;
 		width: 100%;
 		padding: 0.5em;
+		background: linear-gradient(to bottom, #eee, #f8f8f8);
 	}
 
 	.swap-button {
@@ -32,12 +33,15 @@
 		font-size: 0.7em;
 		opacity: 0.5;
 		cursor: pointer;
+		text-align: right;
 	}
 
 	.error-report {
 		color: red;
+		text-align: center;
 	}
 
-	// .share-link {
-	// }
+	.share-link {
+		text-align: center;
+	}
 }
