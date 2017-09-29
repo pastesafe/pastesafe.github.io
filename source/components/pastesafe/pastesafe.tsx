@@ -45,7 +45,7 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 	render() {
 		const {store} = this.props
 		return (
-			<div className="pastesafe" data-error={!!store.error}>
+			<div className="pastesafe" data-error={!!store.errorMessage}>
 
 				{/* KEY INPUT
 					- avoid the word "password" on the input, to hide from pesky password managers
@@ -83,8 +83,8 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 					: null}
 
 				{/* ERROR REPORT */}
-				{store.error ?
-					<div className="error-report">{store.error.message || "unknown error"}</div>
+				{store.errorMessage ?
+					<div className="error-report">{store.errorMessage}</div>
 					: null}
 
 				{/* SHARE LINK */}

@@ -9,44 +9,42 @@ export default class PasteSafeStore {
 	@observable textInput: string
 	@observable textOutput: string
 	@observable ciphertext: string
-	@observable error: Error
+	@observable errorMessage: string
 
 	@action
 	private async encrypt(text: string, password: string) {
 		let ciphertext: string
-		let error: Error
+		let errorMessage: string
 		try {
 			ciphertext = (text && password)
 				? await encrypt({password, plaintext: text})
 				: ""
 		}
 		catch (err) {
-			err.message = `encrypt error: ${err.message}`
-			error = err
+			errorMessage = `encrypt error: ${err.name} ${err.message}`
 			ciphertext = ""
 		}
 		this.textOutput = ciphertext
 		this.ciphertext = ciphertext
-		this.error = error
+		this.errorMessage = errorMessage
 	}
 
 	@action
 	private async decrypt(text: string, password: string) {
 		let plaintext: string
-		let error: Error
+		let errorMessage: string
 		try {
 			plaintext = (text && password)
 				? await decrypt({password, ciphertext: text})
 				: ""
 		}
 		catch (err) {
-			err.message = `decrypt error: ${err.message}`
-			error = err
+			errorMessage = `decrypt error: ${err.name} ${err.message}`
 			plaintext = ""
 		}
 		this.textOutput = plaintext
 		this.ciphertext = text
-		this.error = error
+		this.errorMessage = errorMessage
 	}
 
 	@action
