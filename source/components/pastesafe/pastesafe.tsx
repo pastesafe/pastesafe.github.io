@@ -55,7 +55,7 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 					type="text"
 					placeholder="Key"
 					autoComplete="off"
-					maxLength={32}
+					maxLength={2048}
 					onChange={this.handleKeyInputChange}
 				/>
 
