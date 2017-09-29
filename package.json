@@ -6,18 +6,14 @@
 	"scripts": {
 		"prepare": "run-p build",
 		"clean": "rimraf dist && mkdir dist",
-		"build": "npm run clean -s && run-p build-scripts build-styles && run-p build-archive && echo Done production build.",
+		"build": "npm run clean -s && run-p build-scripts build-styles && echo Done production build.",
 		"build-debug": "npm run clean -s && run-p build-scripts-debug build-styles-debug && echo Done debug build.",
 		"build-scripts": "browserify source/script.tsx -p tsify -g [ envify --NODE_ENV production ] -p bundle-collapser/plugin | uglifyjs --compress --mangle > dist/script.bundle.js",
 		"build-scripts-debug": "browserify source/script.tsx --debug -p tsify > dist/script.bundle.js",
 		"build-styles": "node-sass source/style.scss dist/style.css",
 		"build-styles-debug": "node-sass --source-map true source/style.scss dist/style.css",
-		"start": "http-server -p 8080",
-		"build-archive": "run-p bundle-main build-styles-layout build-styles-vibes",
-		"bundle-main": "tsc && browserify dist/main.js | uglifyjs -m > dist/main.bundle.js",
-		"build-styles-layout": "node-sass --source-map true source/style/layout.scss dist/style/layout.css",
-		"build-styles-vibes": "node-sass --source-map true source/style/vibes.scss dist/style/vibes.css",
-		"watch-styles": "node-sass --watch --source-map true source/style.scss dist/style.css"
+		"watch-styles": "node-sass --watch --source-map true source/style.scss dist/style.css",
+		"start": "http-server -p 8080"
 	},
 	"author": "Chase Moskal",
 	"license": "ISC",
