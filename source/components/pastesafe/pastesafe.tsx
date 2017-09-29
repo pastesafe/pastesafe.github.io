@@ -21,8 +21,8 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 	}
 
 	@action
-	private readonly updateTextInput = (input: string) => {
-		this.props.store.textInput = input.toString().trim()
+	private readonly updateStoreTextInput = (input: string) => {
+		this.props.store.textInput = input
 	}
 
 	@action
@@ -31,15 +31,35 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 	}
 
 	private readonly handleTextInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
-		this.updateTextInput(event.currentTarget.value)
+		this.updateStoreTextInput(event.currentTarget.value)
 	}
 
 	private readonly handleSwap: React.MouseEventHandler<HTMLAnchorElement> = event => {
 		const newInput = this.props.store.textOutput
 		if (newInput) {
 			this.references.textInput.element.value = newInput
-			this.updateTextInput(newInput)
+			this.updateStoreTextInput(newInput)
 		}
+	}
+
+	@action
+	private readonly consumeHash = () => {
+		const hash = /(?:^|#)([0-9a-f]{10,})/i.exec(window.location.hash);
+		if (hash) {
+			const hex = hash[1]
+			this.references.textInput.element.value = hex
+			this.updateStoreTextInput(hex)
+		}
+		window.location.hash = ""
+	}
+
+	componentDidMount() {
+		this.consumeHash()
+		window.addEventListener("hashchange", this.consumeHash)
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("hashchange", this.consumeHash)
 	}
 
 	render() {
@@ -88,11 +108,11 @@ export default class PasteSafe extends React.Component<{store: PasteSafeStore}> 
 					: null}
 
 				{/* SHARE LINK */}
-				{/*{store.ciphertext ?
+				{store.ciphertext ?
 					<a className="share-link" title="shareable link" href={"#" + store.ciphertext}>
 						{window.location.href + "#" + store.ciphertext.substring(0, 8) + "..."}
 					</a>
-					: null}*/}
+					: null}
 
 			</div>
 		)
